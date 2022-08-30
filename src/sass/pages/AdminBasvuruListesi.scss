@@ -1,0 +1,157 @@
+@import "../variable";
+.AdminBasvuruListesiPage {
+  font-size: 2rem;
+  h1 {
+    text-align: center;
+    margin: 2rem auto;
+  }
+  &-categorytitle {
+    text-align: center;
+    display: block;
+    margin-top: 2rem;
+  }
+}
+.AdminBasvuruListesiContainer {
+  @include flexr;
+  width: 80%;
+  margin: 2rem auto;
+
+  flex-wrap: wrap;
+}
+.AdminBasvuruListesi {
+  border-radius: 5px;
+  background-color: $w2;
+  margin: 1rem;
+  padding: 1rem 2rem;
+  box-shadow: 0px 0px 5px $g3;
+  -moz-box-shadow: 0px 0px 5px $g3;
+  -webkit-box-shadow: 0px 0px 5px $g3;
+  position: relative;
+
+  &-item {
+    color: $b2;
+    @include flex1;
+    margin-top: 0.5rem;
+    span {
+      margin-left: 5px;
+    }
+    &:last-child {
+      @include flex1;
+      justify-content: space-between;
+      font-size: 1.3rem;
+      color: $g4;
+      a {
+        font-size: 1.5rem;
+        color: $g5;
+      }
+    }
+  }
+}
+.AdminBasvuruListesi-item.beklemede {
+  span {
+    color: $y2;
+  }
+}
+.AdminBasvuruListesi-item.onaylandı {
+  span {
+    color: $gr1;
+  }
+}
+.filterButtons {
+  @include flex2;
+  margin: 0 auto;
+
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: $w3;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $g6;
+  }
+
+  &-item {
+    position: relative;
+    margin: 2rem 0.5rem;
+    padding: 1rem;
+    background-color: $w2;
+    border: none;
+    border-radius: 2px;
+    font-weight: bold;
+    @include flex1;
+    font-size: 1.6rem;
+    white-space: nowrap;
+    color: $b2;
+    transition: background-color 200ms;
+    span {
+      margin-right: 1rem;
+    }
+    &:hover {
+      background-color: $g5;
+    }
+    &-count {
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 20px;
+      height: 20px;
+      background-color: $y3;
+      border-radius: 50%;
+      color: $w1;
+      @include flexr;
+      font-size: 1.2rem;
+      border: 1px solid $w1;
+    }
+  }
+}
+.AdminSearchArea {
+  @include flexr;
+  &__input {
+    display: flex;
+    border: 1px solid $g4;
+    border-radius: 3px;
+    overflow: hidden;
+    input {
+      border: none;
+      width: 80%;
+      padding: 1rem;
+    }
+    button {
+      border: none;
+      width: 20%;
+      font-size: 2rem;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .filterButtons {
+    overflow-x: scroll;
+    justify-content: space-between;
+
+    &-item {
+      margin: 1rem 0.2rem;
+    }
+  }
+  .AdminSearchArea {
+    @include flexr;
+    margin-top: 2rem;
+    &__input {
+      display: flex;
+      border: 1px solid $g4;
+      border-radius: 3px;
+      overflow: hidden;
+      input {
+        border: none;
+        width: 80%;
+        padding: 1rem;
+      }
+      button {
+        border: none;
+        width: 20%;
+        font-size: 2rem;
+      }
+    }
+  }
+}

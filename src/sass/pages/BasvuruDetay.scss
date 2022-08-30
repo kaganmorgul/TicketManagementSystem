@@ -1,0 +1,106 @@
+@import "../variable";
+
+.BasvuruDetay {
+  &-title {
+    margin: 3rem auto;
+    text-align: center;
+  }
+  &-backicon {
+    position: absolute;
+    font-size: 3rem;
+    right: 2%;
+    bottom: 2%;
+    border: none;
+    background: none;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  &__form {
+    background-color: $w2;
+    max-width: 350px;
+    margin: 6rem auto;
+    position: relative;
+    border-bottom: 2px solid $g2;
+    border-radius: 5px;
+    overflow: hidden;
+    &::before {
+      content: "";
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      top: -10%;
+      left: 10%;
+      background-color: $g4;
+      border-radius: 50%;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      bottom: -10%;
+      left: -10%;
+      background-color: $g7;
+      border-radius: 50%;
+    }
+
+    &__list {
+      padding: 2rem;
+      @include flexc;
+      position: relative;
+      &-item {
+        z-index: 4;
+        margin-top: 1.5rem;
+        width: 100%;
+        p {
+          display: flex;
+          flex-wrap: wrap;
+          span {
+            font-size: 1.8rem;
+            margin-left: 0.3rem;
+            text-transform: capitalize;
+          }
+          h2 {
+            font-size: 1.8rem;
+            white-space: nowrap;
+          }
+        }
+      }
+      &-photo {
+        width: 100%;
+        padding: 0.5rem 0;
+        text-align: center;
+        border-bottom: 2px solid rgba($g7, 0.606);
+        img {
+          width: 130px;
+          height: 130px;
+          border-radius: 50%;
+          background: linear-gradient(to right, $o1, $w2);
+          padding: 4px;
+          box-shadow: -2px 20px 23px 0px $b1;
+          -webkit-box-shadow: -2px 20px 23px 0px $b1;
+          -moz-box-shadow: -2px 20px 23px 0px $b1;
+        }
+      }
+      &-icon {
+        position: absolute;
+        top: 0%;
+        color: $g2;
+        right: 0;
+        font-size: 4rem;
+      }
+    }
+  }
+}
+@media screen and (max-width: 350px) {
+  .BasvuruDetay__form {
+    max-width: 90%;
+    overflow: hidden;
+  }
+}
+@media screen and (max-width: 350px) {
+  .BasvuruDetay__form__list-item p {
+    flex-direction: column;
+  }
+}

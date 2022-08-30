@@ -1,0 +1,93 @@
+@import "../variable";
+
+.UserNav {
+  background-color: $w2;
+  height: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 99;
+  width: 100%;
+  position: relative;
+  &__image {
+    height: 100%;
+    margin-left: 1rem;
+  }
+  &__list {
+    display: flex;
+    &-item {
+      margin-right: 2rem;
+      font-size: 2rem;
+      color: $w1;
+      @include flex1;
+      color: $g1;
+      &:hover a {
+        color: $b1;
+      }
+      &:hover {
+        color: $b1;
+      }
+      a {
+        margin-left: 0.3rem;
+        color: $g1;
+      }
+    }
+    &-icon {
+      display: none;
+    }
+  }
+  &__icon {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .UserNav {
+    position: relative;
+    width: 100%;
+
+    &__list {
+      background-color: $g7;
+      @include flexc;
+      justify-content: center;
+      position: fixed;
+      top: 0;
+      width: 70%;
+      right: -100%;
+      height: 100vh;
+      transition: right 400ms;
+      &-icon {
+        display: block;
+        position: absolute;
+        top: 2%;
+        left: 2%;
+        font-size: 3rem;
+      }
+      &-item {
+        font-size: 2rem;
+
+        margin: 2rem;
+        color: $b1;
+        a {
+          font-size: 2rem;
+
+          margin-left: 0.3rem;
+          color: $b1;
+          &:hover {
+            color: $b1;
+          }
+        }
+      }
+    }
+    &__list.active {
+      right: 0%;
+      width: 70%;
+    }
+
+    &__icon {
+      display: block;
+      font-size: 3rem;
+      margin-right: 1rem;
+    }
+  }
+}

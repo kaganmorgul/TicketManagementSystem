@@ -1,0 +1,88 @@
+@import "../variable";
+.BasvuruSorgu {
+  &__form {
+    animation: BasvuruForm 1s;
+    &__container {
+      margin: 2rem auto;
+      width: 15rem;
+      height: 4rem;
+      display: flex;
+      box-shadow: 0px 0px 4px $g1;
+      -moz-box-shadow: 0px 0px 4px $g1;
+      -webkit-box-shadow: 0px 0px 4px $g1;
+      border-radius: 3px;
+      overflow: hidden;
+      transition: all 0.3s;
+      &-input {
+        border: none;
+        height: 100%;
+        width: 80%;
+        outline: none;
+        padding: 1rem;
+      }
+      &-button {
+        border: none;
+        height: 100%;
+        width: 30%;
+        font-size: 2.5rem;
+      }
+    }
+    &__container.active {
+      width: 25rem;
+      &-button {
+        border: none;
+        height: 100%;
+        width: 20%;
+        font-size: 2.5rem;
+      }
+    }
+  }
+  &__list {
+    width: 300px;
+    margin: 2rem auto;
+    &-item {
+      margin-top: 1rem;
+      border: 1px solid $g1;
+      justify-content: space-between;
+      padding: 1rem;
+      @include flex1;
+      button {
+        padding: 0.3rem;
+      }
+    }
+  }
+}
+.BasvuruSorguList {
+  min-width: 200px;
+  max-width: 250px;
+  margin: 0 auto;
+  @include flexc;
+  &-item {
+    height: 50px;
+    font-size: 1.5rem;
+    background-color: $w2;
+    margin: 1rem;
+    min-width: 230px;
+    justify-content: space-between;
+    @include flex1;
+    padding: 1rem;
+    border-left: 2px solid $b1;
+
+    &-detail {
+      border: none;
+      font-size: 1.6rem;
+      color: $g1;
+      &:hover {
+        color: $b1;
+        transform: scale(1.1);
+        cursor: pointer;
+      }
+    }
+  }
+}
+.notFindItem {
+  text-align: center;
+}
+.detailloading {
+  width: 30px;
+}

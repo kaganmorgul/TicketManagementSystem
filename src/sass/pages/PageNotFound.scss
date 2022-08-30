@@ -1,0 +1,17 @@
+@import "../animations";
+.PageNotFound {
+  &-text {
+    margin-top: 4rem;
+    text-align: center;
+    font-size: 5rem;
+    column-rule: grey;
+    animation: notfoundtext 5s;
+  }
+  h3 {
+    text-align: center;
+    font-size: 3rem;
+    border-radius: 5px;
+    display: block;
+    margin: 3rem auto;
+  }
+}

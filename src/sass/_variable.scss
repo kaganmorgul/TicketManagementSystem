@@ -1,0 +1,61 @@
+// white
+$w1: #fff;
+$w2: #f7f7f7;
+$w3: #f1f1f1;
+$w4: gainsboro;
+
+//grey
+$g1: grey;
+$g2: gray;
+$g3: rgb(172, 172, 172);
+$g4: rgb(202, 202, 202);
+$g5: rgb(130, 130, 130);
+$g6: #888;
+$g7: rgb(239, 239, 239);
+//orange
+$o1: orange;
+
+// black
+$b1: rgba(0, 0, 0, 0.2);
+$b2: #000;
+$b3: rgba(141, 141, 141, 0.185);
+
+//yellow
+$y1: yellow;
+$y2: rgb(249, 249, 17);
+$y3: rgb(255, 191, 0);
+
+//green
+$gr1: green;
+
+//blue
+$bl1: rgb(148, 216, 253);
+
+// purple
+$prp1: rgba(235, 88, 235, 0.359);
+$prp2: rgb(152, 95, 210);
+
+//red
+$r1: red;
+$r2: rgb(255, 50, 50);
+
+// mixins
+
+@mixin flexr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flexc {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+@mixin flex1 {
+  display: flex;
+  align-items: center;
+}
+@mixin flex2 {
+  display: flex;
+  justify-content: center;
+}
