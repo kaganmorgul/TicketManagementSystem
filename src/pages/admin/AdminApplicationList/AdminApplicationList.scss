@@ -1,24 +1,24 @@
-@import "../variable";
-.AdminBasvuruListesiPage {
+@import "../../../sass/variable";
+.adminBasvuruListesiPage {
   font-size: 2rem;
   h1 {
     text-align: center;
     margin: 2rem auto;
   }
-  &-categorytitle {
+  .categoryTitle {
     text-align: center;
     display: block;
     margin-top: 2rem;
   }
 }
-.AdminBasvuruListesiContainer {
+.adminTicketList {
   @include flexr;
   width: 80%;
   margin: 2rem auto;
 
   flex-wrap: wrap;
 }
-.AdminBasvuruListesi {
+.adminBasvuruListesi {
   border-radius: 5px;
   background-color: $w2;
   margin: 1rem;
@@ -28,7 +28,7 @@
   -webkit-box-shadow: 0px 0px 5px $g3;
   position: relative;
 
-  &-item {
+  .item {
     color: $b2;
     @include flex1;
     margin-top: 0.5rem;
@@ -47,12 +47,12 @@
     }
   }
 }
-.AdminBasvuruListesi-item.beklemede {
+.item.beklemede {
   span {
     color: $y2;
   }
 }
-.AdminBasvuruListesi-item.onaylandı {
+.item.onaylandı {
   span {
     color: $gr1;
   }
@@ -71,7 +71,7 @@
     background: $g6;
   }
 
-  &-item {
+  .item {
     position: relative;
     margin: 2rem 0.5rem;
     padding: 1rem;
@@ -90,7 +90,7 @@
     &:hover {
       background-color: $g5;
     }
-    &-count {
+    .count {
       position: absolute;
       top: -20%;
       right: -10%;
@@ -105,9 +105,9 @@
     }
   }
 }
-.AdminSearchArea {
+.adminSearchArea {
   @include flexr;
-  &__input {
+  .input {
     display: flex;
     border: 1px solid $g4;
     border-radius: 3px;
@@ -130,14 +130,14 @@
     overflow-x: scroll;
     justify-content: space-between;
 
-    &-item {
+    .item {
       margin: 1rem 0.2rem;
     }
   }
   .AdminSearchArea {
     @include flexr;
     margin-top: 2rem;
-    &__input {
+    .input {
       display: flex;
       border: 1px solid $g4;
       border-radius: 3px;

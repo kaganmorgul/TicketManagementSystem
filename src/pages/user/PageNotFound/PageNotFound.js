@@ -1,8 +1,8 @@
 import React from "react";
-import "../../sass/pages/PageNotFound.scss";
+import "./PageNotFound.scss";
 import { Link } from "react-router-dom";
 
-function PageNotFound() {
+const PageNotFound = () => {
   return (
     <div className="PageNotFound">
       <div className="PageNotFound-text">
@@ -13,6 +13,6 @@ function PageNotFound() {
       </div>
     </div>
   );
-}
+};
 
 export default PageNotFound;

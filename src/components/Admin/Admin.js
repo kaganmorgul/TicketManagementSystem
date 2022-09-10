@@ -1,11 +1,11 @@
 import React from "react";
-import AdminNav from "../Navs/AdminNav";
+import AdminNav from "components/Navs/AdminNav/AdminNav";
 import { Navigate } from "react-router-dom";
 import { useContext } from "react";
-import AuthContext from "../../context/AuthContext";
+import { Context } from "pages";
 
-function Admin() {
-  const authData = useContext(AuthContext);
+const Admin = () => {
+  const authData = useContext(Context);
   return (
     <>
       {authData.login ? (
@@ -15,6 +15,6 @@ function Admin() {
       )}
     </>
   );
-}
+};
 
 export default Admin;

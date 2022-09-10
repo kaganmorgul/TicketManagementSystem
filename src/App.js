@@ -1,41 +1,43 @@
 import "./App.scss";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 // user
-import BasvuruBasarili from "./pages/user/BasvuruBasarili";
-import BasvuruDetay from "./pages/user/BasvuruDetay";
-import BasvuruOlustur from "./pages/user/BasvuruOlustur";
-import BasvuruSorgula from "./pages/user/BasvuruSorgula";
-import PageNotFound from "./pages/user/PageNotFound";
-import User from "./components/User/User";
-// admin
-import AdminLogin from "./pages/admin/AdminLogin";
-import Admin from "./components/Admin/Admin";
-import AdminBasvuruListesi from "./pages/admin/AdminBasvuruListesi";
-import AdminBasvuruDetay from "./pages/admin/AdminBasvuruDetay";
+import ApplicationSuccessful from "./pages/user/ApplicationSuccessful/ApplicationSuccessful";
+import ApplicationDetail from "./pages/user/ApplicationDetail/ApplicationDetail";
 
-function App() {
+import CreateApplication from "./pages/user/CreateApplication/CreateApplication";
+import SearchApplication from "./pages/user/SearchApplication/SearchApplication";
+import PageNotFound from "./pages/user/PageNotFound/PageNotFound";
+import User from "./components/User/User";
+
+// admin
+import AdminLogin from "./pages/admin/AdminLogin/AdminLogin";
+import Admin from "./components/Admin/Admin";
+import AdminApplicationList from "./pages/admin/AdminApplicationList/AdminApplicationList";
+import AdminApplicationDetail from "./pages/admin/AdminApplicationDetail/AdminApplicationDetail";
+
+const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path="/admin" element={<Admin />}>
-            <Route index element={<AdminBasvuruListesi />} />
-            <Route path="basvuru/:id" element={<AdminBasvuruDetay />} />
-            <Route path="basvuru-listesi" element={<AdminBasvuruListesi />} />
+            <Route index element={<AdminApplicationList />} />
+            <Route path="basvuru/:id" element={<AdminApplicationDetail />} />
+            <Route path="basvuru-listesi" element={<AdminApplicationList />} />
           </Route>
           <Route path="admin-login" element={<AdminLogin />} />
           <Route path="/" element={<User />}>
-            <Route index element={<BasvuruOlustur />} />
-            <Route path="basvuru-olustur" element={<BasvuruOlustur />} />
-            <Route path="basvuru-sorgula" element={<BasvuruSorgula />} />
+            <Route index element={<CreateApplication />} />
+            <Route path="basvuru-olustur" element={<CreateApplication />} />
+            <Route path="basvuru-sorgula" element={<SearchApplication />} />
           </Route>
-          <Route path="basvuru/:id" element={<BasvuruDetay />} />
-          <Route path="basvuru-basarili" element={<BasvuruBasarili />} />
+          <Route path="basvuru/:id" element={<ApplicationDetail />} />
+          <Route path="basvuru-basarili" element={<ApplicationSuccessful />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;

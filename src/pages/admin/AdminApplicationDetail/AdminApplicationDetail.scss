@@ -1,10 +1,10 @@
-@import "../variable";
+@import "../../../sass/variable";
 .AdminBasvuruDetay {
-  &-title {
+  .title {
     text-align: center;
     margin: 2rem 0;
   }
-  &__Card {
+  .card {
     width: 500px;
     background-color: $w2;
     margin: 3rem auto;
@@ -14,7 +14,7 @@
     box-shadow: 0px 0px 5px $g2;
     -webkit-box-shadow: 0px 0px 5px $g2;
     -moz-box-shadow: 0px 0px 5px $g2;
-    &-photo {
+    .photo {
       width: 130px;
       height: 130px;
       border-radius: 50%;
@@ -26,7 +26,7 @@
       -webkit-box-shadow: -2px 20px 23px 0px $b1;
       -moz-box-shadow: -2px 20px 23px 0px $b1;
     }
-    &-favicon {
+    .favicon {
       position: absolute;
       font-size: 3rem;
       right: 2%;
@@ -34,7 +34,7 @@
       border: none;
       background: none;
     }
-    &-backicon {
+    .backicon {
       position: absolute;
       font-size: 3rem;
       left: 2%;
@@ -45,13 +45,13 @@
         transform: scale(1.1);
       }
     }
-    &-favicon.active {
+    .favicon.active {
       color: $y1;
     }
-    &__List {
+    .list {
       @include flexc;
       justify-content: center;
-      &-item {
+      .item {
         width: 70%;
         margin: 1rem;
         display: flex;
@@ -72,7 +72,7 @@
         }
       }
     }
-    &-comment {
+    .comment {
       textarea {
         resize: none;
         width: 100%;

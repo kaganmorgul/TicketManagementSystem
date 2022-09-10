@@ -1,14 +1,13 @@
-import "../../sass/pages/AdminLogin.scss";
-
+import "./AdminLogin.scss";
 import { useContext, useEffect, useState } from "react";
-import AuthContext from "../../context/AuthContext";
-import { auth } from "../../config/FirebaseAuth";
+import Context from "context/Context";
+import { auth } from "config/FirebaseAuth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
-function AdminLogin() {
+const AdminLogin = () => {
   const navigate = useNavigate();
-  const authData = useContext(AuthContext);
+  const authData = useContext(Context);
   const [tryy, setTryy] = useState(0);
   const [lock, setLock] = useState(false);
 
@@ -63,6 +62,6 @@ function AdminLogin() {
       </form>
     </div>
   );
-}
+};
 
 export default AdminLogin;

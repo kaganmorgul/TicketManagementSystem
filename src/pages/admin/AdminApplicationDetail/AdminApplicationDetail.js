@@ -1,7 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import FormContext from "../../context/FormValContext";
-import "../../sass/pages/AdminBasvuruDetay.scss";
+import { Context } from "pages/index";
+import "./AdminApplicationDetail.scss";
+
+// icons
 import { AiTwotoneStar, AiOutlineRollback } from "react-icons/ai";
 import {
   BiCommentAdd,
@@ -9,19 +11,34 @@ import {
   BiTime,
   BiRefresh,
 } from "react-icons/bi";
-import { FaTimes } from "react-icons/fa";
 import { BsCheckLg } from "react-icons/bs";
-function AdminBasvuruDetay() {
+import { FaTimes } from "react-icons/fa";
+
+const AdminBasvuruDetay = () => {
   const navigate = useNavigate();
+
   const [commentArea, setCommentArea] = useState(false);
-  const data = useContext(FormContext);
-  let { id } = useParams();
+
+  const data = useContext(Context);
+
+  const { id } = useParams();
+
+  // ticket status class vals
+  const classStatus = {
+    APPROVED: "onaylandı",
+    WAITING: "onay bekliyor",
+    APPROVE: "onay",
+    WAIT: "wait",
+    REJECT: "red",
+  };
+
   // find ticket
   const ticket = data.getFormDataFromLS.find(
     (i) => i.ticketno === parseInt(id)
   );
-  // yorumekle
-  const yorumyap = (yorumid) => {
+
+  // add comment
+  const addComment = (yorumid) => {
     const newListForComment = data.getFormDataFromLS.map((i) => {
       if (i.ticketno === yorumid) {
         i.comment = data.comments;
@@ -31,8 +48,9 @@ function AdminBasvuruDetay() {
     data.setComments("");
     localStorage.setItem("ticket", JSON.stringify(newListForComment));
   };
-  // ticket onay
-  const onay = (onayid) => {
+
+  // ticket approve
+  const approve = (onayid) => {
     const newListForApprove = data.getFormDataFromLS.map((i) => {
       if (i.ticketno === onayid) {
         i.status = "onaylandı";
@@ -42,8 +60,9 @@ function AdminBasvuruDetay() {
     });
     localStorage.setItem("ticket", JSON.stringify(newListForApprove));
   };
-  // ticket red
-  const red = (redid) => {
+
+  // ticket reject
+  const reject = (redid) => {
     const newListForApprove = data.getFormDataFromLS.map((i) => {
       if (i.ticketno === redid) {
         i.status = "reddedildi";
@@ -53,6 +72,7 @@ function AdminBasvuruDetay() {
     data.setApprove("reddedildi");
     localStorage.setItem("ticket", JSON.stringify(newListForApprove));
   };
+
   // ticket fav
   const fav = (favid) => {
     const newListForFav = data.getFormDataFromLS.map((i) => {
@@ -67,6 +87,8 @@ function AdminBasvuruDetay() {
     data.setFavorite(!data.favorite);
     localStorage.setItem("ticket", JSON.stringify(newListForFav));
   };
+
+  //ticket wait
   const wait = (waitid) => {
     const newforwait = data.getFormDataFromLS.map((i) => {
       if (i.ticketno === waitid) {
@@ -78,6 +100,8 @@ function AdminBasvuruDetay() {
     alert("onay güncellendi");
     localStorage.setItem("ticket", JSON.stringify(newforwait));
   };
+
+  //remove comment
   const removeComment = (removeid) => {
     const dataforremovecomment = data.getFormDataFromLS.map((i) => {
       if (i.ticketno === removeid) {
@@ -89,92 +113,104 @@ function AdminBasvuruDetay() {
     data.setComments("");
     localStorage.setItem("ticket", JSON.stringify(dataforremovecomment));
   };
+
+  //backToPreviousPage
+  const backToPreviousPage = () => navigate("../", { replace: true });
+
+  //favIconClassName
+  const favIconClassName = () => {
+    let className = "";
+    ticket.favorite ? (className = "favicon active") : (className = "favicon");
+    return className;
+  };
+
+  //open & close comment area
+  const commentAreaShow = () => setCommentArea(!commentArea);
+
+  //comment area change open & close icon
+  const commentAreaIcons = () => {
+    let icon = "";
+    commentArea ? (icon = <BiCommentMinus />) : (icon = <BiCommentAdd />);
+    return icon;
+  };
+
+  //comment textarea change value
+  const changeComments = (value) => {
+    data.setComments(value.target.value);
+  };
+
+  //ticket status ClassName
+  const ticketStatus = () => {
+    let className = "";
+    ticket.status === classStatus.APPROVED
+      ? (className = classStatus.APPROVE)
+      : ticket.status === classStatus.WAITING
+      ? (className = classStatus.WAIT)
+      : (className = classStatus.REJECT);
+
+    return className;
+  };
+
   return (
     <div className="AdminBasvuruDetay">
-      <h1 className="AdminBasvuruDetay-title">{`${ticket.ticketno} No'lu Ticket`}</h1>
-      <div className="AdminBasvuruDetay__Card">
-        <img
-          className="AdminBasvuruDetay__Card-photo"
-          src={ticket.photo}
-          alt=""
-        ></img>
+      <h1 className="title">{`${ticket.ticketno} No'lu Ticket`}</h1>
+      <div className="card">
+        <img className="photo" src={ticket.photo} alt="" />
         <button
           onClick={() => fav(ticket.ticketno)}
-          className={
-            ticket.favorite
-              ? "AdminBasvuruDetay__Card-favicon active"
-              : "AdminBasvuruDetay__Card-favicon"
-          }
+          className={favIconClassName()}
         >
           <AiTwotoneStar />
         </button>
-        <button
-          onClick={() => navigate("../", { replace: true })}
-          className={"AdminBasvuruDetay__Card-backicon"}
-        >
-          {/* <Link to="/admin/basvuru-listesi"> */}
+        <button onClick={backToPreviousPage} className={"backicon"}>
           <AiOutlineRollback />
-          {/* </Link> */}
         </button>
-        <ul className="AdminBasvuruDetay__Card__List">
-          <li className="AdminBasvuruDetay__Card__List-item">
+        <ul className="list">
+          <li className="item">
             <h2>{"İsim:"}</h2>
             <span>{ticket.firstname}</span>
           </li>
-          <li className="AdminBasvuruDetay__Card__List-item">
+          <li className="item">
             <h2>{"Soyisim:"}</h2>
             <span>{ticket.lastname}</span>
           </li>
-          <li className="AdminBasvuruDetay__Card__List-item">
+          <li className="item">
             <h2>{"TC Kimlik No:"}</h2>
             <span>{ticket.id}</span>
           </li>
-          <li className="AdminBasvuruDetay__Card__List-item">
+          <li className="item">
             <h2>{"Ticket no:"}</h2>
             <span>{ticket.ticketno}</span>
           </li>
-          <li className="AdminBasvuruDetay__Card__List-item">
+          <li className="item">
             <h2>{"Adres:"}</h2>
             <span>{ticket.address}</span>
           </li>
-          <li className="AdminBasvuruDetay__Card__List-item">
+          <li className="item">
             <h2>{"Konu:"}</h2>
             <span>{ticket.reason}</span>
           </li>
-          <li className="AdminBasvuruDetay__Card__List-item">
+          <li className="item">
             <h2>{"Tarih:"}</h2>
             <span>{ticket.today}</span>
           </li>
-          <li className="AdminBasvuruDetay__Card__List-item">
+          <li className="item">
             <h2>{"Durum:"}</h2>
-            <span
-              className={
-                ticket.status === "onaylandı"
-                  ? "onay"
-                  : ticket.status === "onay bekliyor"
-                  ? "wait"
-                  : "red"
-              }
-            >
-              {ticket.status}
-            </span>
-            <button onClick={() => onay(ticket.ticketno)}>
+            <span className={ticketStatus()}>{ticket.status}</span>
+            <button onClick={() => approve(ticket.ticketno)}>
               <BsCheckLg />
             </button>
-            <button onClick={() => red(ticket.ticketno)}>
+            <button onClick={() => reject(ticket.ticketno)}>
               <FaTimes />
             </button>
             <button onClick={() => wait(ticket.ticketno)}>
               <BiTime />
             </button>
           </li>
-          <li className="AdminBasvuruDetay__Card__List-item">
+          <li className="item">
             <h2>{"Yorum:"}</h2>
-            <span>{`${ticket.comment}`}</span>
-
-            <button onClick={() => setCommentArea(!commentArea)}>
-              {commentArea ? <BiCommentMinus /> : <BiCommentAdd />}
-            </button>
+            <span>{ticket.comment}</span>
+            <button onClick={commentAreaShow}>{commentAreaIcons()}</button>
             {ticket.comment.length > 1 && (
               <button onClick={() => removeComment(ticket.ticketno)}>
                 <BiRefresh />
@@ -183,16 +219,14 @@ function AdminBasvuruDetay() {
           </li>
         </ul>
         {commentArea && (
-          <div className="AdminBasvuruDetay__Card-comment">
+          <div className="comment">
             <textarea
               value={data.comments}
-              onChange={(e) => data.setComments(e.target.value)}
-              name=""
-              id=""
+              onChange={(e) => changeComments(e)}
               cols="30"
               rows="10"
             ></textarea>
-            <button onClick={() => yorumyap(ticket.ticketno)}>
+            <button onClick={() => addComment(ticket.ticketno)}>
               Yorum Ekle
             </button>
           </div>
@@ -200,6 +234,6 @@ function AdminBasvuruDetay() {
       </div>
     </div>
   );
-}
+};
 
 export default AdminBasvuruDetay;

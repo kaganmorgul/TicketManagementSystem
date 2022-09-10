@@ -1,18 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import "../../sass/pages/BasvuruBasarili.scss";
-import { AiOutlineCheckCircle } from "react-icons/ai";
+import "./ApplicationSuccessful.scss";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
-import FormContext from "../../context/FormValContext";
-import GeneralContext from "../../context/GeneralContext";
-
-function BasvuruBasarili() {
+import Context from "context/Context";
+// icons
+import { AiOutlineCheckCircle } from "react-icons/ai";
+const BasvuruBasarili = () => {
   const navigate = useNavigate();
-  const data = useContext(FormContext);
-  const dataGeneral = useContext(GeneralContext);
+  const data = useContext(Context);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    !dataGeneral.successControl && navigate("../", { replace: true });
+    !data.successControl && navigate("../", { replace: true });
   });
   useEffect(() => {
     setTimeout(() => {
@@ -25,7 +23,7 @@ function BasvuruBasarili() {
     }, 5000);
   });
   return (
-    dataGeneral.successControl && (
+    data.successControl && (
       <>
         {loading ? (
           <img className="onayloading" src="../../photos/loading.gif" alt="" />
@@ -44,6 +42,6 @@ function BasvuruBasarili() {
       </>
     )
   );
-}
+};
 
 export default BasvuruBasarili;

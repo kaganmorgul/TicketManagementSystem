@@ -1,19 +1,22 @@
 import { createContext } from "react";
-import { useState } from "react";
-const FormContext = createContext();
-export const FormProvider = ({ children }) => {
+import { useState, useEffect } from "react";
+const Context = createContext();
+export const Provider = ({ children }) => {
   // LS
   const getFormDataFromLS = localStorage.getItem("ticket")
     ? JSON.parse(localStorage.getItem("ticket"))
     : [];
+
   // values
   const [formdata, setFormData] = useState(getFormDataFromLS);
   const [approve, setApprove] = useState("onay bekliyor");
   const [decline, setDecline] = useState("reddedildi");
   const [comments, setComments] = useState("Yorum Yapılmadı");
   const [favorite, setFavorite] = useState(false);
+
   // random ticket Id
   const [num, setNum] = useState(0);
+
   //random number for random form image
   const [numForImage, setNumForImage] = useState(0);
 
@@ -25,6 +28,22 @@ export const FormProvider = ({ children }) => {
   function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
+
+  // success control
+  const [successControl, setSuccessControl] = useState(false);
+
+  //auth
+  const getAdminControl = sessionStorage.getItem("admin")
+    ? JSON.parse(sessionStorage.getItem("admin"))
+    : null;
+  const [login, setLogin] = useState(getAdminControl);
+
+  useEffect(() => {
+    sessionStorage.setItem("admin", login);
+  });
+
+  const [adminEmail, setAdminEmail] = useState("");
+  const [adminPassword, setAdminPassword] = useState("");
 
   const vals = {
     formdata,
@@ -45,8 +64,16 @@ export const FormProvider = ({ children }) => {
     numForImage,
     setNumForImage,
     randomNumber,
+    successControl,
+    setSuccessControl,
+    adminEmail,
+    setAdminEmail,
+    adminPassword,
+    setAdminPassword,
+    login,
+    setLogin,
   };
-  return <FormContext.Provider value={vals}>{children}</FormContext.Provider>;
+  return <Context.Provider value={vals}>{children}</Context.Provider>;
 };
 
-export default FormContext;
+export default Context;

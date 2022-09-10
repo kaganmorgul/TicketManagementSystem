@@ -1,15 +1,15 @@
-@import "../variable";
-@import "../animations";
+@import "../../../sass/variable";
+@import "../../../sass/animations";
 
-.BasvuruOlustur {
-  &__title {
+.createTicket {
+  .title {
     text-align: center;
     margin: 2rem 0;
     color: $g3;
     font-size: 3rem;
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   }
-  &__container {
+  .container {
     position: relative;
     max-width: 500px;
     margin: 3rem auto;
@@ -20,10 +20,10 @@
     border-radius: 5px;
   }
 }
-.BasvuruForm {
+.ticketForm {
   @include flexc;
   z-index: 99;
-  &__input {
+  .input {
     width: 80%;
     margin-top: 3rem;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -42,7 +42,7 @@
         background-color: $g7;
       }
     }
-    &-check {
+    .check {
       font-size: 2rem;
       position: absolute;
       top: 50%;
@@ -50,7 +50,7 @@
       right: 1%;
       color: $gr1;
     }
-    &-times {
+    .times {
       font-size: 2rem;
       position: absolute;
       top: 50%;
@@ -58,7 +58,7 @@
       right: 1%;
       color: $r1;
     }
-    &-error {
+    .error {
       position: absolute;
       top: 100%;
       left: 0;
@@ -73,19 +73,19 @@
       transform: translateY(0%);
       animation: formerror 1s;
       height: 2rem;
-      &-icon {
+      .icon {
         font-size: 1.2rem;
         margin-left: 1rem;
       }
     }
   }
-  &__input.isValid {
+  .input.isValid {
     outline: 2px solid $gr1;
   }
-  &__input.notisValid {
+  .input.notisValid {
     outline: 2px solid $r1;
   }
-  &__textarea {
+  .textarea {
     height: 80px;
     width: 80%;
     border-radius: 0.5rem;
@@ -108,7 +108,7 @@
         background-color: $g7;
       }
     }
-    &-check {
+    .check {
       font-size: 2rem;
       position: absolute;
       top: 50%;
@@ -116,7 +116,7 @@
       right: 1%;
       color: $gr1;
     }
-    &-times {
+    .times {
       font-size: 2rem;
       position: absolute;
       top: 50%;
@@ -124,7 +124,7 @@
       right: 1%;
       color: $r1;
     }
-    &-error {
+    .error {
       position: absolute;
       top: 100%;
       left: 0;
@@ -140,7 +140,7 @@
       animation: formerror 1s;
       height: 2rem;
     }
-    &-count {
+    .count {
       position: absolute;
       bottom: 1%;
       right: 1%;
@@ -148,13 +148,13 @@
       font-weight: bold;
     }
   }
-  &__textarea.isValid {
+  .textarea.isValid {
     outline: 2px solid $gr1;
   }
-  &__textarea.notisValid {
+  .textarea.notisValid {
     outline: 2px solid $r1;
   }
-  &__button {
+  .BasvuruFormButton {
     padding: 1.2rem;
     margin: 3rem auto 1rem auto;
     color: $w1;
@@ -180,7 +180,7 @@
 }
 @media screen and (max-width: 800px) {
   .BasvuruOlustur {
-    &__container {
+    .container {
       width: 90%;
     }
   }

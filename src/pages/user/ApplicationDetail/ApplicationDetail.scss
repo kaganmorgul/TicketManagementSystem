@@ -1,22 +1,23 @@
-@import "../variable";
+@import "../../../sass/variable";
 
-.BasvuruDetay {
-  &-title {
+.applicationDetail {
+  .title {
     margin: 3rem auto;
     text-align: center;
   }
-  &-backicon {
+  .backicon {
     position: absolute;
     font-size: 3rem;
     right: 2%;
     bottom: 2%;
     border: none;
     background: none;
+    cursor: pointer;
     &:hover {
       transform: scale(1.1);
     }
   }
-  &__form {
+  .cardDetail {
     background-color: $w2;
     max-width: 350px;
     margin: 6rem auto;
@@ -45,11 +46,11 @@
       border-radius: 50%;
     }
 
-    &__list {
+    .list {
       padding: 2rem;
       @include flexc;
       position: relative;
-      &-item {
+      .item {
         z-index: 4;
         margin-top: 1.5rem;
         width: 100%;
@@ -67,7 +68,7 @@
           }
         }
       }
-      &-photo {
+      .photo {
         width: 100%;
         padding: 0.5rem 0;
         text-align: center;
@@ -83,7 +84,7 @@
           -moz-box-shadow: -2px 20px 23px 0px $b1;
         }
       }
-      &-icon {
+      .icon {
         position: absolute;
         top: 0%;
         color: $g2;
@@ -94,13 +95,13 @@
   }
 }
 @media screen and (max-width: 350px) {
-  .BasvuruDetay__form {
+  .cardDetail {
     max-width: 90%;
     overflow: hidden;
   }
 }
 @media screen and (max-width: 350px) {
-  .BasvuruDetay__form__list-item p {
+  .item p {
     flex-direction: column;
   }
 }
