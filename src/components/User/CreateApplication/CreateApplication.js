@@ -3,15 +3,15 @@ import { useNavigate } from "react-router-dom";
 import "./CreateApplication.scss";
 import { useFormik } from "formik";
 import Context from "context/Context";
+import validations from "config/Validations";
 // icons
 import {
   FaExclamation,
   FaRegTimesCircle,
   FaRegCheckCircle,
 } from "react-icons/fa";
-import validations from "../Validations";
 
-const BasvuruOlustur = () => {
+const CreateApplication = () => {
   const navigate = useNavigate();
   const data = useContext(Context);
   const getFormDataFromLS = localStorage.getItem("ticket")
@@ -28,20 +28,20 @@ const BasvuruOlustur = () => {
     isValid,
   } = useFormik({
     initialValues: {
-      firstName: "WFEWFEWF",
-      lastName: "4WEFWFW",
-      id: 22111111111,
-      age: 43,
-      reason: "utkjukkuku",
-      address: "ergergergergergerg",
+      // firstName: "WFEWFEWF",
+      // lastName: "4WEFWFW",
+      // id: 22111111111,
+      // age: 43,
+      // reason: "utkjukkuku",
+      // address: "ergergergergergerg",
 
-      // firstName: "",
-      // lastName: "",
-      // id: "",
-      // age: "",
-      // reason: "",
-      // address: "",
-      // photo: "",
+      firstName: "",
+      lastName: "",
+      id: "",
+      age: "",
+      reason: "",
+      address: "",
+      photo: "",
     },
     validationSchema: validations,
     onSubmit: (values) => {
@@ -236,6 +236,7 @@ const BasvuruOlustur = () => {
               id="age"
               name="age"
               placeholder="Yaş"
+              max="99"
               required
               type="number"
               onBlur={handleBlur}
@@ -281,4 +282,4 @@ const BasvuruOlustur = () => {
     </div>
   );
 };
-export default BasvuruOlustur;
+export default CreateApplication;

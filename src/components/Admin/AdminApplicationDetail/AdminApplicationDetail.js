@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import { Context } from "pages/index";
+import Context from "context/Context";
 import "./AdminApplicationDetail.scss";
 
 // icons

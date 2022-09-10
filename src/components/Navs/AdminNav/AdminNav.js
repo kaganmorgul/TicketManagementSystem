@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./AdminNav.scss";
 import { Outlet, Link } from "react-router-dom";
 import { useContext } from "react";
-import { Context } from "pages";
+import Context from "context/Context";
 // icons
 import { BiMenu, BiMenuAltLeft, BiLogOut } from "react-icons/bi";
 import { FaClipboardList } from "react-icons/fa";
