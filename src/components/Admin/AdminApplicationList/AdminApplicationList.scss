@@ -97,6 +97,9 @@
   }
 }
 .adminSearchArea {
+  @media screen and (max-width: 500px) {
+    margin-top: 1rem;
+  }
   @include flexr;
   .input {
     display: flex;

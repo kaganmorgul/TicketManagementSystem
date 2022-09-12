@@ -13,7 +13,7 @@ import {
   BiRefresh,
 } from "react-icons/bi";
 import { BsCheckLg } from "react-icons/bs";
-import { FaTimes } from "react-icons/fa";
+import { FaTimes, FaEdit, FaMinus } from "react-icons/fa";
 import { useEffect } from "react";
 
 const AdminApplicationDetail = () => {
@@ -29,6 +29,8 @@ const AdminApplicationDetail = () => {
     show: false,
     status: "",
   });
+
+  const [ticketSetting, setTicketSetting] = useState(false);
 
   // alert Messages
   const alertMsg = {
@@ -190,18 +192,21 @@ const AdminApplicationDetail = () => {
     alerts.show ? (className = "alert active") : (className = "alert");
     return className;
   };
+
+  //open ticket setting
+  const openSetting = () => {
+    setTicketSetting(!ticketSetting);
+  };
+
   return (
     <div className="AdminBasvuruDetay">
       <h1 className="title">{`${ticket.ticketno} No'lu Ticket`}</h1>
       <div className="card">
-        <Alert alerts={alerts} alertClass={alertClass} />
         <img className="photo" src={ticket.photo} alt="" />
-        <button
-          onClick={() => fav(ticket.ticketno)}
-          className={favIconClassName()}
-        >
-          <AiTwotoneStar />
+        <button className="editButton" onClick={openSetting}>
+          <FaEdit />
         </button>
+
         <button onClick={backToPreviousPage} className={"backicon"}>
           <AiOutlineRollback />
         </button>
@@ -238,38 +243,70 @@ const AdminApplicationDetail = () => {
           <li className="item">
             <h2>{"Durum:"}</h2>
             <span className={ticketStatus()}>{ticket.status}</span>
-            <button onClick={() => approve(ticket.ticketno)}>
-              <BsCheckLg />
-            </button>
-            <button onClick={() => reject(ticket.ticketno)}>
-              <FaTimes />
-            </button>
-            <button onClick={() => wait(ticket.ticketno)}>
-              <BiTime />
-            </button>
           </li>
           <li className="item">
             <h2>{"Yorum:"}</h2>
             <span>{ticket.comment}</span>
-            <button onClick={commentAreaShow}>{commentAreaIcons()}</button>
-            {ticket.comment.length > 1 && (
-              <button onClick={() => removeComment(ticket.ticketno)}>
-                <BiRefresh />
-              </button>
-            )}
           </li>
         </ul>
-        {commentArea && (
-          <div className="comment">
-            <textarea
-              value={data.comments}
-              onChange={(e) => changeComments(e)}
-              cols="30"
-              rows="10"
-            ></textarea>
-            <button onClick={() => addComment(ticket.ticketno)}>
-              Yorum Ekle
-            </button>
+        {ticketSetting && (
+          <div className="cardSetting">
+            <FaMinus onClick={openSetting} />
+            <Alert alerts={alerts} alertClass={alertClass} />
+            <ul className="cardSettingItems">
+              <li className="cardSettingItem">
+                <p>Onayla</p>
+                <button onClick={() => approve(ticket.ticketno)}>
+                  <BsCheckLg />
+                </button>
+              </li>
+              <li className="cardSettingItem">
+                <p>Reddet</p>
+                <button onClick={() => reject(ticket.ticketno)}>
+                  <FaTimes />
+                </button>
+              </li>
+              <li className="cardSettingItem">
+                <p>Beklet</p>
+                <button onClick={() => wait(ticket.ticketno)}>
+                  <BiTime />
+                </button>
+              </li>
+              <li className="cardSettingItem">
+                <p>Favorilere ekle</p>
+                <button
+                  onClick={() => fav(ticket.ticketno)}
+                  className={favIconClassName()}
+                >
+                  <AiTwotoneStar />
+                </button>
+              </li>
+              <li className="cardSettingItem">
+                <p>Yorum Ekle</p>
+                <button onClick={commentAreaShow}>{commentAreaIcons()}</button>
+              </li>
+              <li className="cardSettingItem">
+                <p>Yorum Temizle</p>
+                {ticket.comment.length > 1 && (
+                  <button onClick={() => removeComment(ticket.ticketno)}>
+                    <BiRefresh />
+                  </button>
+                )}
+              </li>
+              {commentArea && (
+                <div className="comment">
+                  <textarea
+                    value={data.comments}
+                    onChange={(e) => changeComments(e)}
+                    cols="30"
+                    rows="10"
+                  ></textarea>
+                  <button onClick={() => addComment(ticket.ticketno)}>
+                    Yorum Ekle
+                  </button>
+                </div>
+              )}
+            </ul>
           </div>
         )}
       </div>
