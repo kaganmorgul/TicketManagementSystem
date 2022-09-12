@@ -23,17 +23,18 @@ const App = () => {
             <Route index element={<CreateApplication />} />
             <Route path="basvuru-olustur" element={<CreateApplication />} />
             <Route path="basvuru-sorgula" element={<SearchApplication />} />
+            <Route path="basvuru/:id" element={<ApplicationDetail />} />
           </Route>
-          <Route path="basvuru/:id" element={<ApplicationDetail />} />
-          <Route path="basvuru-basarili" element={<ApplicationSuccessful />} />
+
           {/* admin pages */}
           <Route path="/admin" element={<Admin />}>
             <Route index element={<AdminApplicationList />} />
             <Route path="basvuru/:id" element={<AdminApplicationDetail />} />
             <Route path="basvuru-listesi" element={<AdminApplicationList />} />
           </Route>
+
+          <Route path="basvuru-basarili" element={<ApplicationSuccessful />} />
           <Route path="admin-login" element={<AdminLogin />} />
-          {/* other pages */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>

@@ -1,7 +1,7 @@
 import "./AdminLogin.scss";
 import { useContext, useEffect, useState } from "react";
 import Context from "context/Context";
-import { auth } from "config/FirebaseAuth";
+import { auth } from "config/firebaseAuth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -43,8 +43,8 @@ const AdminLogin = () => {
   });
 
   return (
-    <div className="AdminLogin">
-      <form className="AdminLogin__form" onSubmit={Login}>
+    <div className="adminLogin">
+      <form className="adminLoginForm" onSubmit={Login}>
         <h1>Admin Login</h1>
         <input
           type="text"

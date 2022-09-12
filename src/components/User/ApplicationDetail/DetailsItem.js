@@ -1,23 +1,18 @@
 import React from "react";
+import { useContext } from "react";
+import Context from "context/Context";
 
 const DetailsItem = ({ ticket }) => {
-  // ticket status class vals
-  const classStatus = {
-    APPROVED: "onaylandı",
-    WAITING: "onay bekliyor",
-    APPROVE: "onay",
-    WAIT: "wait",
-    REJECT: "red",
-  };
+  const data = useContext(Context);
 
   // ticket status ClassName
   const ticketStatus = () => {
     let className = "";
-    ticket.status === classStatus.APPROVED
-      ? (className = classStatus.APPROVE)
-      : ticket.status === classStatus.WAITING
-      ? (className = classStatus.WAIT)
-      : (className = classStatus.REJECT);
+    ticket.status === data.classStatus.APPROVED
+      ? (className = data.classStatus.APPROVE)
+      : ticket.status === data.classStatus.WAITING
+      ? (className = data.classStatus.WAIT)
+      : (className = data.classStatus.REJECT);
 
     return className;
   };
@@ -69,7 +64,7 @@ const DetailsItem = ({ ticket }) => {
       <li className="item">
         <p>
           <h2>{"Status:"}</h2>
-          <span className={ticketStatus()}>{ticket.status}</span>
+          <span className={`${ticketStatus()} status`}>{}</span>
         </p>
       </li>
       <li className="item">

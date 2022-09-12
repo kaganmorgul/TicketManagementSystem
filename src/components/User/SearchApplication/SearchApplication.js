@@ -11,7 +11,7 @@ const SearchApplication = () => {
   const navigate = useNavigate();
   const [searchVal, setSearchVal] = useState("");
   const data = useContext(Context);
-  const [myTicket, setMyticket] = useState("");
+  const [myTicket, setMyticket] = useState(null);
   const [loading, setLoading] = useState(false);
   const [inputWidth, setInputWidth] = useState(false);
 
@@ -26,6 +26,19 @@ const SearchApplication = () => {
       (i) => i.ticketno === parseInt(searchVal)
     );
     setMyticket(findItem);
+  };
+
+  const foundTicket = () => {
+    return (
+      myTicket && (
+        <ul className="ticketList">
+          <li className="item">
+            <h3 className="number">{`Ticket No: ${myTicket.ticketno} `}</h3>
+            {showTicket()}
+          </li>
+        </ul>
+      )
+    );
   };
 
   const goDetail = () => {
@@ -70,14 +83,7 @@ const SearchApplication = () => {
           </button>
         </div>
       </form>
-      {myTicket && (
-        <ul className="ticketList">
-          <li className="item">
-            <h3 className="number">{`Ticket No: ${myTicket.ticketno} `}</h3>
-            {showTicket()}
-          </li>
-        </ul>
-      )}
+      {foundTicket()}
     </div>
   );
 };

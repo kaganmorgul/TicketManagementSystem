@@ -5,6 +5,7 @@ import Context from "context/Context";
 import { useParams, useNavigate } from "react-router-dom";
 import DetailsItem from "./DetailsItem";
 import PageNotFound from "../PageNotFound/PageNotFound";
+import TicketStatusInfo from "./TicketStatusInfo";
 // icons
 import { AiOutlineRollback } from "react-icons/ai";
 import { GoQuote } from "react-icons/go";
@@ -24,7 +25,8 @@ const ApplicationDetail = () => {
 
   return ticket ? (
     <div className="applicationDetail">
-      <h1 className="title">{`${ticket.ticketno}'Nolu Ticket Detayı`}</h1>
+      <TicketStatusInfo />
+      <h1 className="title">{`${ticket.ticketno}'Nolu Ticket`}</h1>
       <div className="cardDetail">
         <ul className="list">
           <span className="icon">
@@ -33,7 +35,7 @@ const ApplicationDetail = () => {
           <div className="photo">
             <img src={ticket.photo} alt="" />
           </div>
-          <DetailsItem ticket={ticket} />0 0{" "}
+          <DetailsItem ticket={ticket} />
           <button onClick={backToPreviousPage} className={"backicon"}>
             <AiOutlineRollback />
           </button>

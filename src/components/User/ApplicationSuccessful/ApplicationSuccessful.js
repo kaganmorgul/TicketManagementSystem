@@ -5,7 +5,7 @@ import { useContext } from "react";
 import Context from "context/Context";
 // icons
 import { AiOutlineCheckCircle } from "react-icons/ai";
-const BasvuruBasarili = () => {
+const Success = () => {
   const navigate = useNavigate();
   const data = useContext(Context);
   const [loading, setLoading] = useState(true);
@@ -26,14 +26,18 @@ const BasvuruBasarili = () => {
     data.successControl && (
       <>
         {loading ? (
-          <img className="onayloading" src="../../photos/loading.gif" alt="" />
+          <img
+            className="successLoading"
+            src="../../photos/loading.gif"
+            alt=""
+          />
         ) : (
           <>
-            <div className="BasvuruOnayBox">
-              <h2 className="BasvuruOnayBox__title">Başvurunuz İletildi</h2>
-              <h2 className="BasvuruOnayBox__title">Ticket No</h2>
-              <p className="BasvuruOnayBox__text">{data.num}</p>
-              <span className="BasvuruOnayBox__icon">
+            <div className="applicationSuccessBox">
+              <h2 className="title">Başvurunuz İletildi</h2>
+              <h2 className="title">Ticket No</h2>
+              <p className="text">{data.num}</p>
+              <span className="icon">
                 <AiOutlineCheckCircle />
               </span>
             </div>
@@ -44,4 +48,4 @@ const BasvuruBasarili = () => {
   );
 };
 
-export default BasvuruBasarili;
+export default Success;

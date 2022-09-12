@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./CreateApplication.scss";
 import { useFormik } from "formik";
 import Context from "context/Context";
-import validations from "config/Validations";
+import validations from "config/validations";
 // icons
 import {
   FaExclamation,
@@ -28,20 +28,20 @@ const CreateApplication = () => {
     isValid,
   } = useFormik({
     initialValues: {
-      // firstName: "WFEWFEWF",
-      // lastName: "4WEFWFW",
-      // id: 22111111111,
-      // age: 43,
-      // reason: "utkjukkuku",
-      // address: "ergergergergergerg",
+      firstName: "Kağan",
+      lastName: "Morgül",
+      id: 24567893421,
+      age: 43,
+      reason: "Internet access",
+      address: "1572 Southside Lane City Gardena  California",
 
-      firstName: "",
-      lastName: "",
-      id: "",
-      age: "",
-      reason: "",
-      address: "",
-      photo: "",
+      // firstName: "",
+      // lastName: "",
+      // id: "",
+      // age: "",
+      // reason: "",
+      // address: "",
+      // photo: "",
     },
     validationSchema: validations,
     onSubmit: (values) => {
@@ -274,7 +274,11 @@ const CreateApplication = () => {
             {textareaStatusIcons(touched.address, errors.address)}
             {textareaMessageCounter(values.address)}
           </div>
-          <button type="submit" onClick={direct} className="BasvuruFormButton">
+          <button
+            type="submit"
+            onClick={direct}
+            className="applicationFormButton"
+          >
             Gönder
           </button>
         </form>

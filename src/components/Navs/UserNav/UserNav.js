@@ -17,29 +17,29 @@ const Nav = () => {
   const navClassName = () => {
     let className = "";
     if (menuShow) {
-      className = "UserNav__list active";
+      className = "list active";
     } else {
-      className = "UserNav__list";
+      className = "list";
     }
     return className;
   };
 
   return (
     <>
-      <nav className="UserNav">
-        <img className="UserNav__image" src="./photos/logo2.PNG" alt="" />
-        <div className="UserNav__icon">
+      <nav className="userNav">
+        <div className="navImage"></div>
+        <div className="navIcon">
           <AiOutlineMenu onClick={MenuOpen} />
         </div>
         <ul onClick={() => MenuOpen()} className={navClassName()}>
-          <span className="UserNav__list-icon">
+          <span className="listIcon">
             <AiOutlineMenu onClick={MenuOpen} />
           </span>
-          <li onClick={() => MenuOpen()} className="UserNav__list-item">
+          <li onClick={() => MenuOpen()} className="listItem">
             <BsPencilSquare />
             <Link to="/basvuru-olustur">Başvuru Oluştur</Link>
           </li>
-          <li onClick={() => MenuOpen()} className="UserNav__list-item">
+          <li onClick={() => MenuOpen()} className="listItem">
             <AiOutlineSearch />
             <Link to="/basvuru-sorgula">Başvuru Sorgula</Link>
           </li>

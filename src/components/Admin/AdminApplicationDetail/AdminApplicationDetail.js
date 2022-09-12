@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import Context from "context/Context";
 import "./AdminApplicationDetail.scss";
+import Alert from "./Alert";
 
 // icons
 import { AiTwotoneStar, AiOutlineRollback } from "react-icons/ai";
@@ -13,8 +14,9 @@ import {
 } from "react-icons/bi";
 import { BsCheckLg } from "react-icons/bs";
 import { FaTimes } from "react-icons/fa";
+import { useEffect } from "react";
 
-const AdminBasvuruDetay = () => {
+const AdminApplicationDetail = () => {
   const navigate = useNavigate();
 
   const [commentArea, setCommentArea] = useState(false);
@@ -23,13 +25,27 @@ const AdminBasvuruDetay = () => {
 
   const { id } = useParams();
 
-  // ticket status class vals
-  const classStatus = {
-    APPROVED: "onaylandı",
-    WAITING: "onay bekliyor",
-    APPROVE: "onay",
-    WAIT: "wait",
-    REJECT: "red",
+  const [alerts, setAlerts] = useState({
+    show: false,
+    status: "",
+  });
+
+  // alert Messages
+  const alertMsg = {
+    APPROVE: "Ticket Onaylandı",
+    WAIT: "Ticket Beklemeye alındı",
+    REJECT: "Ticket Reddedildi",
+    FAV_TRUE: "Favorilere Eklendi",
+    FAV_FALSE: "Favorilerden Çıkartıldı",
+    COMMENT_ADD: "Yorum Eklendi",
+    COMMENT_CLEAR: "Yorum Temizlendi",
+  };
+
+  //ticket status
+  const ticketStatusMsg = {
+    APPROVE: "onaylandı",
+    PENDING: "onay bekliyor",
+    REJECT: "reddedildi",
   };
 
   // find ticket
@@ -37,79 +53,90 @@ const AdminBasvuruDetay = () => {
     (i) => i.ticketno === parseInt(id)
   );
 
+  //comment textarea change value
+  const changeComments = (value) => {
+    data.setComments(value.target.value);
+  };
+
   // add comment
-  const addComment = (yorumid) => {
+  const addComment = (commentID) => {
     const newListForComment = data.getFormDataFromLS.map((i) => {
-      if (i.ticketno === yorumid) {
+      if (i.ticketno === commentID) {
         i.comment = data.comments;
       }
       return i;
     });
+    setAlerts({ show: true, status: alertMsg.COMMENT_ADD });
     data.setComments("");
-    localStorage.setItem("ticket", JSON.stringify(newListForComment));
+    updateLS("ticket", newListForComment);
   };
 
   // ticket approve
-  const approve = (onayid) => {
+  const approve = (approveID) => {
     const newListForApprove = data.getFormDataFromLS.map((i) => {
-      if (i.ticketno === onayid) {
-        i.status = "onaylandı";
-        data.setApprove("onaylandı");
+      if (i.ticketno === approveID) {
+        i.status = ticketStatusMsg.APPROVE;
       }
       return i;
     });
-    localStorage.setItem("ticket", JSON.stringify(newListForApprove));
+    setAlerts({ show: true, status: alertMsg.APPROVE });
+    updateLS("ticket", newListForApprove);
   };
 
   // ticket reject
-  const reject = (redid) => {
-    const newListForApprove = data.getFormDataFromLS.map((i) => {
-      if (i.ticketno === redid) {
-        i.status = "reddedildi";
+  const reject = (rejectID) => {
+    const newListForReject = data.getFormDataFromLS.map((i) => {
+      if (i.ticketno === rejectID) {
+        i.status = ticketStatusMsg.REJECT;
       }
       return i;
     });
-    data.setApprove("reddedildi");
-    localStorage.setItem("ticket", JSON.stringify(newListForApprove));
+    setAlerts({ show: true, status: alertMsg.REJECT });
+    updateLS("ticket", newListForReject);
+  };
+
+  //ticket wait
+  const wait = (waitID) => {
+    const newforwait = data.getFormDataFromLS.map((i) => {
+      if (i.ticketno === waitID) {
+        i.status = ticketStatusMsg.PENDING;
+      }
+      return i;
+    });
+    setAlerts({ show: true, status: alertMsg.WAIT });
+    localStorage.setItem("ticket", JSON.stringify(newforwait));
+  };
+
+  // set Local Storage when update
+  const updateLS = (ls, value) => {
+    localStorage.setItem(ls, JSON.stringify(value));
   };
 
   // ticket fav
-  const fav = (favid) => {
+  const fav = (favoriteID) => {
     const newListForFav = data.getFormDataFromLS.map((i) => {
-      if (i.ticketno === favid) {
+      if (i.ticketno === favoriteID) {
         i.favorite = !i.favorite;
         i.favorite
-          ? alert("favorilere eklendi")
-          : alert("Favorilerden Çıkartıldı");
+          ? setAlerts({ show: true, status: alertMsg.FAV_TRUE })
+          : setAlerts({ show: true, status: alertMsg.FAV_FALSE });
       }
       return i;
     });
+
     data.setFavorite(!data.favorite);
     localStorage.setItem("ticket", JSON.stringify(newListForFav));
   };
 
-  //ticket wait
-  const wait = (waitid) => {
-    const newforwait = data.getFormDataFromLS.map((i) => {
-      if (i.ticketno === waitid) {
-        i.status = "onay bekliyor";
-      }
-      return i;
-    });
-    data.setApprove("onay bekliyor");
-    alert("onay güncellendi");
-    localStorage.setItem("ticket", JSON.stringify(newforwait));
-  };
-
   //remove comment
-  const removeComment = (removeid) => {
+  const removeComment = (removeID) => {
     const dataforremovecomment = data.getFormDataFromLS.map((i) => {
-      if (i.ticketno === removeid) {
+      if (i.ticketno === removeID) {
         i.comment = "";
-        alert("Yorum silindi");
       }
       return i;
     });
+    setAlerts({ show: true, status: alertMsg.COMMENT_CLEAR });
     data.setComments("");
     localStorage.setItem("ticket", JSON.stringify(dataforremovecomment));
   };
@@ -134,27 +161,40 @@ const AdminBasvuruDetay = () => {
     return icon;
   };
 
-  //comment textarea change value
-  const changeComments = (value) => {
-    data.setComments(value.target.value);
-  };
-
   //ticket status ClassName
   const ticketStatus = () => {
     let className = "";
-    ticket.status === classStatus.APPROVED
-      ? (className = classStatus.APPROVE)
-      : ticket.status === classStatus.WAITING
-      ? (className = classStatus.WAIT)
-      : (className = classStatus.REJECT);
+    ticket.status === data.classStatus.APPROVED
+      ? (className = data.classStatus.APPROVE)
+      : ticket.status === data.classStatus.WAITING
+      ? (className = data.classStatus.WAIT)
+      : (className = data.classStatus.REJECT);
 
     return className;
   };
 
+  //Alerts control
+  useEffect(() => {
+    alerts.show &&
+      setTimeout(() => {
+        setAlerts({
+          show: false,
+          status: "",
+        });
+      }, 2000);
+  }, [alerts.show, alerts.status]);
+
+  //Alert Class
+  const alertClass = () => {
+    let className = "";
+    alerts.show ? (className = "alert active") : (className = "alert");
+    return className;
+  };
   return (
     <div className="AdminBasvuruDetay">
       <h1 className="title">{`${ticket.ticketno} No'lu Ticket`}</h1>
       <div className="card">
+        <Alert alerts={alerts} alertClass={alertClass} />
         <img className="photo" src={ticket.photo} alt="" />
         <button
           onClick={() => fav(ticket.ticketno)}
@@ -182,8 +222,9 @@ const AdminBasvuruDetay = () => {
             <h2>{"Ticket no:"}</h2>
             <span>{ticket.ticketno}</span>
           </li>
-          <li className="item">
+          <li className="item ">
             <h2>{"Adres:"}</h2>
+            <br />
             <span>{ticket.address}</span>
           </li>
           <li className="item">
@@ -236,4 +277,4 @@ const AdminBasvuruDetay = () => {
   );
 };
 
-export default AdminBasvuruDetay;
+export default AdminApplicationDetail;

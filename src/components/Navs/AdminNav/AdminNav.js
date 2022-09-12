@@ -26,9 +26,9 @@ const AdminNav = () => {
   const navClassName = () => {
     let className = "";
     if (menuShow) {
-      className = "AdminNav active";
+      className = "adminNav active";
     } else {
-      className = "AdminNav";
+      className = "adminNav";
     }
     return className;
   };
@@ -42,26 +42,26 @@ const AdminNav = () => {
         <h1>Admin</h1>
       </div>
       <nav onClick={sideBar} className={navClassName()}>
-        <h1 className="AdminNav-icon">
+        <h1 className="icon">
           <Link to="#">
             <BiMenuAltLeft onClick={sideBar} />
           </Link>
         </h1>
-        <h3 className="AdminNav-title">
+        <h3 className="title">
           <Link to="/admin">Admin </Link>
         </h3>
-        <ul className="AdminNav__list">
-          <li className="AdminNav__list-item">
+        <ul className="list">
+          <li className="listItem">
             <AiFillHome />
             <Link to="/">Anasayfa</Link>
           </li>
-          <li className="AdminNav__list-item">
+          <li className="listItem">
             <FaClipboardList />
             <Link to="/admin/basvuru-listesi">Başvuru Listesi</Link>
           </li>
-          <li className="AdminNav__list-item">
+          <li className="listItem">
             <BiLogOut />
-            <button className="AdminNav-exitbutton" onClick={exit}>
+            <button className="exitButton" onClick={exit}>
               Çıkış
             </button>
           </li>

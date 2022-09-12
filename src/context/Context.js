@@ -11,7 +11,7 @@ export const Provider = ({ children }) => {
   const [formdata, setFormData] = useState(getFormDataFromLS);
   const [approve, setApprove] = useState("onay bekliyor");
   const [decline, setDecline] = useState("reddedildi");
-  const [comments, setComments] = useState("Yorum Yapılmadı");
+  const [comments, setComments] = useState("");
   const [favorite, setFavorite] = useState(false);
 
   // random ticket Id
@@ -45,6 +45,15 @@ export const Provider = ({ children }) => {
   const [adminEmail, setAdminEmail] = useState("");
   const [adminPassword, setAdminPassword] = useState("");
 
+  //class status
+  const classStatus = {
+    APPROVED: "onaylandı",
+    WAITING: "onay bekliyor",
+    APPROVE: "approve",
+    WAIT: "pending",
+    REJECT: "reject",
+  };
+
   const vals = {
     formdata,
     setFormData,
@@ -72,6 +81,7 @@ export const Provider = ({ children }) => {
     setAdminPassword,
     login,
     setLogin,
+    classStatus,
   };
   return <Context.Provider value={vals}>{children}</Context.Provider>;
 };

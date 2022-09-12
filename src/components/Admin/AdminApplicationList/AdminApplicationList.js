@@ -14,7 +14,7 @@ import {
 } from "react-icons/ai";
 import { BsBoxArrowRight } from "react-icons/bs";
 
-const AdminBasvuruListesi = () => {
+const AdminTicketList = () => {
   const data = useContext(Context);
 
   const [filterTickets, setFilterTickets] = useState(data.getFormDataFromLS);
@@ -23,31 +23,23 @@ const AdminBasvuruListesi = () => {
 
   const [searchId, setSearchId] = useState("");
 
-  const classStatus = {
-    APPROVED: "onaylandı",
-    WAITING: "onay bekliyor",
-    APPROVE: "onay",
-    WAIT: "wait",
-    REJECT: "red",
-  };
-
   const filterButtons = [
     {
       id: 1,
       val: data.ticketno,
-      name: "approved",
+      name: "onaylandı",
       icon: <AiOutlineCheckCircle />,
     },
     {
       id: 2,
       val: data.ticketno,
-      name: "waiting for approval",
+      name: "onay bekliyor",
       icon: <BiTime />,
     },
     {
       id: 3,
       val: data.ticketno,
-      name: "rejected",
+      name: "reddedildi",
       icon: <TiDeleteOutline />,
     },
   ];
@@ -117,7 +109,7 @@ const AdminBasvuruListesi = () => {
       .map((i) => {
         return (
           filterTickets && (
-            <ul className="adminBasvuruListesi">
+            <ul className="items">
               <li className="item">
                 <h4>Ticketno:</h4>
                 <span>{i.ticketno}</span>
@@ -130,11 +122,11 @@ const AdminBasvuruListesi = () => {
                 <h4>Durum:</h4>
                 <span
                   className={
-                    i.status === classStatus.APPROVED
-                      ? classStatus.APPROVE
-                      : i.status === classStatus.WAITING
-                      ? classStatus.WAIT
-                      : classStatus.REJECT
+                    i.status === data.classStatus.APPROVED
+                      ? data.classStatus.APPROVE
+                      : i.status === data.classStatus.WAITING
+                      ? data.classStatus.WAIT
+                      : data.classStatus.REJECT
                   }
                 >
                   {i.status.substring(0, 15)}
@@ -157,17 +149,17 @@ const AdminBasvuruListesi = () => {
   };
 
   return (
-    <div className="adminBasvuruListesiPage">
+    <div className="adminTicketListPage">
       <div className="filterButtons">
         <button className="item" onClick={showAll}>
           <span>{<AiOutlineUnorderedList />}</span>
-          All
+          Hepsi
           <span className="count">{data.getFormDataFromLS.length}</span>
         </button>
         {writeFilterButton()}
         <button className="item" onClick={filterFav}>
           <span>{<AiOutlineStar />}</span>
-          Favorite
+          Favoriler
           <span className="count">{ticketFavCount()}</span>
         </button>
       </div>
@@ -190,4 +182,4 @@ const AdminBasvuruListesi = () => {
   );
 };
 
-export default AdminBasvuruListesi;
+export default AdminTicketList;
