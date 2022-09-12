@@ -1,0 +1,39 @@
+@import "../../../sass/variable.scss";
+.ticketStatusInfo {
+  width: 200px;
+  height: 100px;
+  background-color: $w2;
+  border-radius: 1rem;
+  margin: 2rem 1rem 0 auto;
+  position: relative;
+  .icon {
+    top: 0;
+    right: 0;
+    transform: translate(5px, -5px);
+    font-size: 2rem;
+    position: absolute;
+  }
+  ul {
+    width: 100%;
+    height: 100%;
+    @include flexc;
+    justify-content: center;
+    li {
+      width: 80%;
+      @include flex1;
+      justify-content: space-between;
+      div {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+      }
+
+      p {
+        color: $g1;
+        font-size: 1.5rem;
+        width: 80%;
+        font-weight: bold;
+      }
+    }
+  }
+}

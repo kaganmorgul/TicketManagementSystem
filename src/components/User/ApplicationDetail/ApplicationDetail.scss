@@ -20,7 +20,7 @@
   .cardDetail {
     background-color: $w2;
     max-width: 350px;
-    margin: 6rem auto;
+    margin: 0rem auto;
     position: relative;
     border-bottom: 2px solid $g2;
     border-radius: 5px;
@@ -57,6 +57,13 @@
         p {
           display: flex;
           flex-wrap: wrap;
+          align-items: center;
+          .status {
+            margin-left: 1rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+          }
           span {
             font-size: 1.8rem;
             margin-left: 0.3rem;

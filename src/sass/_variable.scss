@@ -39,22 +39,51 @@ $prp2: rgb(152, 95, 210);
 $r1: red;
 $r2: rgb(255, 50, 50);
 
+// status color
+$approve: rgba(149, 255, 0, 0.6);
+$pending: rgba(255, 255, 0, 0.6);
+$reject: rgba(255, 0, 0, 0.6);
+
+// status Class
+
+.approve {
+  background-color: $approve;
+  border-radius: 5px;
+  padding: 0.1rem 0.4rem;
+  color: darken($approve, 10%);
+}
+.pending {
+  background-color: $pending;
+  border-radius: 5px;
+  padding: 0.1rem 0.4rem;
+  color: darken($pending, 10%);
+}
+.reject {
+  background-color: $reject;
+  border-radius: 5px;
+  padding: 0.1rem 0.4rem;
+  color: darken($reject, 20%);
+}
 // mixins
 
+//flex row
 @mixin flexr {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+//flex column
 @mixin flexc {
   display: flex;
   align-items: center;
   flex-direction: column;
 }
+//center vertical
 @mixin flex1 {
   display: flex;
   align-items: center;
 }
+//center horizontal
 @mixin flex2 {
   display: flex;
   justify-content: center;

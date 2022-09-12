@@ -5,7 +5,7 @@
     margin: 2rem 0;
   }
   .card {
-    width: 500px;
+    max-width: 500px;
     background-color: $w2;
     margin: 3rem auto;
     position: relative;
@@ -14,6 +14,10 @@
     box-shadow: 0px 0px 5px $g2;
     -webkit-box-shadow: 0px 0px 5px $g2;
     -moz-box-shadow: 0px 0px 5px $g2;
+    @media screen and (max-width: 600px) {
+      width: 90%;
+    }
+
     .photo {
       width: 130px;
       height: 130px;
@@ -53,16 +57,18 @@
       justify-content: center;
       .item {
         width: 70%;
-        margin: 1rem;
+        margin-top: 1rem;
         display: flex;
-        align-items: center;
         h2 {
-          font-size: 2rem;
+          font-size: 1.8rem;
         }
         span {
-          font-size: 2rem;
+          font-size: 1.8rem;
           margin-left: 5px;
           text-transform: capitalize;
+          word-wrap: break-word;
+          flex-wrap: wrap;
+          overflow: hidden;
         }
         button {
           border: none;
@@ -93,22 +99,4 @@
       }
     }
   }
-}
-.wait {
-  color: rgb(212, 212, 42);
-  background-color: rgb(246, 248, 170);
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-}
-.onay {
-  color: green;
-  background-color: greenyellow;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-}
-.red {
-  color: red;
-  background-color: rgb(245, 199, 199);
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
 }

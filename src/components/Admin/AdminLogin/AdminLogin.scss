@@ -1,12 +1,12 @@
 @import "../../../sass/variable";
 
-.AdminLogin {
+.adminLogin {
   width: 100%;
   min-height: 100vh;
   @include flexr;
   background-color: $w1;
 
-  &__form {
+  .adminLoginForm {
     background-color: $g7;
     box-shadow: 0px 5px 30px $g4;
     -moz-box-shadow: 0px 5px 30px $g4;

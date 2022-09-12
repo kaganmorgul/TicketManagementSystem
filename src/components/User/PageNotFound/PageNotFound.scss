@@ -1,17 +1,23 @@
 @import "../../../sass/variable";
-.PageNotFound {
-  &-text {
+.pageNotFound {
+  min-height: 100vh;
+  @include flexr;
+  .pageNotFoundBox {
     margin-top: 4rem;
     text-align: center;
     font-size: 5rem;
-    column-rule: grey;
     animation: notfoundtext 5s;
+    color: $prp2;
   }
-  h3 {
-    text-align: center;
+  button {
     font-size: 3rem;
     border-radius: 5px;
     display: block;
     margin: 3rem auto;
+    padding: 5px;
+    border: 2px solid $prp2;
+    a {
+      color: $prp2;
+    }
   }
 }

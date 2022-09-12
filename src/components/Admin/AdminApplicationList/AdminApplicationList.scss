@@ -1,5 +1,5 @@
 @import "../../../sass/variable";
-.adminBasvuruListesiPage {
+.adminTicketListPage {
   font-size: 2rem;
   h1 {
     text-align: center;
@@ -18,7 +18,7 @@
 
   flex-wrap: wrap;
 }
-.adminBasvuruListesi {
+.items {
   border-radius: 5px;
   background-color: $w2;
   margin: 1rem;
@@ -47,16 +47,7 @@
     }
   }
 }
-.item.beklemede {
-  span {
-    color: $y2;
-  }
-}
-.item.onaylandı {
-  span {
-    color: $gr1;
-  }
-}
+
 .filterButtons {
   @include flex2;
   margin: 0 auto;
