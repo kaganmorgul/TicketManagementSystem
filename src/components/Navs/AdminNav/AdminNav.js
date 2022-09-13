@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./AdminNav.scss";
 import { Outlet, Link } from "react-router-dom";
-import { useContext } from "react";
 import Context from "context/Context";
 // icons
 import { BiMenu, BiMenuAltLeft, BiLogOut } from "react-icons/bi";
 import { FaClipboardList } from "react-icons/fa";
 import { AiFillHome } from "react-icons/ai";
 
-const AdminNav = () => {
+function AdminNav() {
   const authData = useContext(Context);
   const [menuShow, setMenuShow] = useState(false);
 
@@ -62,7 +61,7 @@ const AdminNav = () => {
           <li className="listItem">
             <BiLogOut />
             <button className="exitButton" onClick={exit}>
-              Çıkış
+                          Çıkış
             </button>
           </li>
         </ul>
@@ -70,6 +69,6 @@ const AdminNav = () => {
       <Outlet />
     </>
   );
-};
+}
 
 export default AdminNav;

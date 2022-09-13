@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./ApplicationDetail.scss";
-import { useContext } from "react";
 import Context from "context/Context";
 import { useParams, useNavigate } from "react-router-dom";
+import { AiOutlineRollback } from "react-icons/ai";
+import { GoQuote } from "react-icons/go";
 import DetailsItem from "./DetailsItem";
 import PageNotFound from "../PageNotFound/PageNotFound";
 import TicketStatusInfo from "./TicketStatusInfo";
 // icons
-import { AiOutlineRollback } from "react-icons/ai";
-import { GoQuote } from "react-icons/go";
 
-const ApplicationDetail = () => {
+function ApplicationDetail() {
   const navigate = useNavigate();
   const data = useContext(Context);
   const { id } = useParams();
@@ -36,7 +35,7 @@ const ApplicationDetail = () => {
             <img src={ticket.photo} alt="" />
           </div>
           <DetailsItem ticket={ticket} />
-          <button onClick={backToPreviousPage} className={"backicon"}>
+          <button onClick={backToPreviousPage} className="backicon">
             <AiOutlineRollback />
           </button>
         </ul>
@@ -45,6 +44,6 @@ const ApplicationDetail = () => {
   ) : (
     <PageNotFound />
   );
-};
+}
 
 export default ApplicationDetail;

@@ -11,7 +11,7 @@ import {
   FaRegCheckCircle,
 } from "react-icons/fa";
 
-const CreateApplication = () => {
+function CreateApplication() {
   const navigate = useNavigate();
   const data = useContext(Context);
   const getFormDataFromLS = localStorage.getItem("ticket")
@@ -72,6 +72,9 @@ const CreateApplication = () => {
           ...val,
         },
       ]);
+      data.setFilterTickets(...getFormDataFromLS, {
+        ...val,
+      });
     },
   });
   useEffect(() => {
@@ -89,7 +92,7 @@ const CreateApplication = () => {
       );
   };
 
-  //basvuru input className
+  // basvuru input className
   const inputStatus = (touch, error) => {
     let className = "";
     if (!touch) {
@@ -104,20 +107,19 @@ const CreateApplication = () => {
     return className;
   };
 
-  //input error messages
-  const inputErrorMessage = (touch, error) => {
-    return (
-      touch &&
-      error && (
-        <div className="error">
-          {error}
-          <span className="icon">{<FaExclamation />}</span>
-        </div>
-      )
+  // input error messages
+  const inputErrorMessage = (touch, error) =>
+    touch &&
+    error && (
+      <div className="error">
+        {error}
+        <span className="icon">
+          <FaExclamation />
+        </span>
+      </div>
     );
-  };
 
-  //input error or check icons show
+  // input error or check icons show
   const inputStatusIcons = (touch, error) => {
     if (touch && !error) {
       return (
@@ -125,7 +127,8 @@ const CreateApplication = () => {
           <FaRegCheckCircle />
         </span>
       );
-    } else if (touch && error) {
+    }
+    if (touch && error) {
       return (
         <span className="times">
           <FaRegTimesCircle />
@@ -134,7 +137,7 @@ const CreateApplication = () => {
     }
   };
 
-  //basvuru textarea className
+  // basvuru textarea className
   const textareaStatus = (touch, error) => {
     let className = "";
     if (!touch) {
@@ -149,20 +152,19 @@ const CreateApplication = () => {
     return className;
   };
 
-  //textarea error messages
-  const textareaErrorMessage = (touch, error) => {
-    return (
-      touch &&
-      error && (
-        <div className="error">
-          {error}
-          <span className="icon">{<FaExclamation />}</span>
-        </div>
-      )
+  // textarea error messages
+  const textareaErrorMessage = (touch, error) =>
+    touch &&
+    error && (
+      <div className="error">
+        {error}
+        <span className="icon">
+          <FaExclamation />
+        </span>
+      </div>
     );
-  };
 
-  //textarea error or check icons show
+  // textarea error or check icons show
   const textareaStatusIcons = (touch, error) => {
     if (touch && !error) {
       return (
@@ -170,7 +172,8 @@ const CreateApplication = () => {
           <FaRegCheckCircle />
         </span>
       );
-    } else if (touch && error) {
+    }
+    if (touch && error) {
       return (
         <span className="times">
           <FaRegTimesCircle />
@@ -179,10 +182,10 @@ const CreateApplication = () => {
     }
   };
 
-  //textarea message word counter
-  const textareaMessageCounter = (len) => {
-    return <span className="count">50 / {0 + len.length}</span>;
-  };
+  // textarea message word counter
+  const textareaMessageCounter = (len) => (
+    <span className="count">50 /{0 + len.length}</span>
+  );
 
   return (
     <div className="createTicket">
@@ -285,5 +288,5 @@ const CreateApplication = () => {
       </div>
     </div>
   );
-};
+}
 export default CreateApplication;

@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import "./ApplicationSuccessful.scss";
-import { useEffect, useState } from "react";
-import { useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import Context from "context/Context";
 // icons
 import { AiOutlineCheckCircle } from "react-icons/ai";
-const Success = () => {
+
+function Success() {
   const navigate = useNavigate();
   const data = useContext(Context);
   const [loading, setLoading] = useState(true);
@@ -32,20 +32,18 @@ const Success = () => {
             alt=""
           />
         ) : (
-          <>
-            <div className="applicationSuccessBox">
-              <h2 className="title">Başvurunuz İletildi</h2>
-              <h2 className="title">Ticket No</h2>
-              <p className="text">{data.num}</p>
-              <span className="icon">
-                <AiOutlineCheckCircle />
-              </span>
-            </div>
-          </>
+          <div className="applicationSuccessBox">
+            <h2 className="title">Başvurunuz İletildi</h2>
+            <h2 className="title">Ticket No</h2>
+            <p className="text">{data.num}</p>
+            <span className="icon">
+              <AiOutlineCheckCircle />
+            </span>
+          </div>
         )}
       </>
     )
   );
-};
+}
 
 export default Success;

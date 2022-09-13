@@ -2,7 +2,7 @@ import React from "react";
 import "./TicketStatusInfo.scss";
 import { AiFillPushpin } from "react-icons/ai";
 
-const TicketStatusInfo = () => {
+function TicketStatusInfo() {
   return (
     <div className="ticketStatusInfo">
       <span className="icon">
@@ -24,6 +24,6 @@ const TicketStatusInfo = () => {
       </ul>
     </div>
   );
-};
+}
 
 export default TicketStatusInfo;

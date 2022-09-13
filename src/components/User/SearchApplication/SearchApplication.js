@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsBoxArrowUpRight } from "react-icons/bs";
 
-const SearchApplication = () => {
+function SearchApplication() {
   const navigate = useNavigate();
   const [searchVal, setSearchVal] = useState("");
   const data = useContext(Context);
@@ -23,23 +23,21 @@ const SearchApplication = () => {
 
   const findTickets = (searchVal) => {
     const findItem = data.getFormDataFromLS.find(
-      (i) => i.ticketno === parseInt(searchVal)
+      (i) => i.ticketno === parseInt(searchVal),
     );
     setMyticket(findItem);
   };
 
-  const foundTicket = () => {
-    return (
-      myTicket && (
-        <ul className="ticketList">
-          <li className="item">
-            <h3 className="number">{`Ticket No: ${myTicket.ticketno} `}</h3>
-            {showTicket()}
-          </li>
-        </ul>
-      )
-    );
-  };
+  const foundTicket = () => (
+    myTicket && (
+      <ul className="ticketList">
+        <li className="item">
+          <h3 className="number">{`Ticket No: ${myTicket.ticketno} `}</h3>
+          {showTicket()}
+        </li>
+      </ul>
+    )
+  );
 
   const goDetail = () => {
     setLoading(true);
@@ -56,15 +54,13 @@ const SearchApplication = () => {
     return className;
   };
 
-  const showTicket = () => {
-    return loading ? (
-      <img className="detailLoading" src="../../photos/loading.gif" alt="" />
-    ) : (
-      <button onClick={goDetail} className="detail">
-        <BsBoxArrowUpRight />
-      </button>
-    );
-  };
+  const showTicket = () => (loading ? (
+    <img className="detailLoading" src="../../photos/loading.gif" alt="" />
+  ) : (
+    <button onClick={goDetail} className="detail">
+      <BsBoxArrowUpRight />
+    </button>
+  ));
 
   return (
     <div className="ticketSearch">
@@ -86,6 +82,6 @@ const SearchApplication = () => {
       {foundTicket()}
     </div>
   );
-};
+}
 
 export default SearchApplication;

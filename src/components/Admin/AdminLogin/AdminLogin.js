@@ -5,7 +5,7 @@ import { auth } from "config/firebaseAuth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
-const AdminLogin = () => {
+function AdminLogin() {
   const navigate = useNavigate();
   const authData = useContext(Context);
   const [tryy, setTryy] = useState(0);
@@ -18,7 +18,7 @@ const AdminLogin = () => {
       const user = await signInWithEmailAndPassword(
         auth,
         authData.adminEmail,
-        authData.adminPassword
+        authData.adminPassword,
       );
       authData.setLogin(true);
       navigate("/admin");
@@ -57,11 +57,11 @@ const AdminLogin = () => {
           onChange={(e) => authData.setAdminPassword(e.target.value)}
         />
         <button disabled={lock} type="submit" onClick={control}>
-          Login
+                  Login
         </button>
       </form>
     </div>
   );
-};
+}
 
 export default AdminLogin;

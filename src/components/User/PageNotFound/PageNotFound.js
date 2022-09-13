@@ -2,7 +2,7 @@ import React from "react";
 import "./PageNotFound.scss";
 import { Link } from "react-router-dom";
 
-const PageNotFound = () => {
+function PageNotFound() {
   return (
     <div className="pageNotFound">
       <div className="pageNotFoundBox">
@@ -14,6 +14,6 @@ const PageNotFound = () => {
       </div>
     </div>
   );
-};
+}
 
 export default PageNotFound;

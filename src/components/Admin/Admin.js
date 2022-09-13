@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import AdminNav from "components/Navs/AdminNav/AdminNav";
 import { Navigate } from "react-router-dom";
-import { useContext } from "react";
 import Context from "context/Context";
 
-const Admin = () => {
+function Admin() {
   const authData = useContext(Context);
   return (
     <>
@@ -15,6 +14,6 @@ const Admin = () => {
       )}
     </>
   );
-};
+}
 
 export default Admin;

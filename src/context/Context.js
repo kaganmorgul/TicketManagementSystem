@@ -1,7 +1,7 @@
-import { createContext } from "react";
-import { useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
+
 const Context = createContext();
-export const Provider = ({ children }) => {
+export function Provider({ children }) {
   // LS
   const getFormDataFromLS = localStorage.getItem("ticket")
     ? JSON.parse(localStorage.getItem("ticket"))
@@ -13,11 +13,12 @@ export const Provider = ({ children }) => {
   const [decline, setDecline] = useState("reddedildi");
   const [comments, setComments] = useState("");
   const [favorite, setFavorite] = useState(false);
+  const [filterTickets, setFilterTickets] = useState(getFormDataFromLS);
 
   // random ticket Id
   const [num, setNum] = useState(0);
 
-  //random number for random form image
+  // random number for random form image
   const [numForImage, setNumForImage] = useState(0);
 
   // date
@@ -32,7 +33,7 @@ export const Provider = ({ children }) => {
   // success control
   const [successControl, setSuccessControl] = useState(false);
 
-  //auth
+  // auth
   const getAdminControl = sessionStorage.getItem("admin")
     ? JSON.parse(sessionStorage.getItem("admin"))
     : null;
@@ -45,7 +46,7 @@ export const Provider = ({ children }) => {
   const [adminEmail, setAdminEmail] = useState("");
   const [adminPassword, setAdminPassword] = useState("");
 
-  //class status
+  // class status
   const classStatus = {
     APPROVED: "onaylandı",
     WAITING: "onay bekliyor",
@@ -82,8 +83,10 @@ export const Provider = ({ children }) => {
     login,
     setLogin,
     classStatus,
+    filterTickets,
+    setFilterTickets,
   };
   return <Context.Provider value={vals}>{children}</Context.Provider>;
-};
+}
 
 export default Context;

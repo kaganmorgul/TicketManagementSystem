@@ -4,7 +4,8 @@ import "./UserNav.scss";
 import { AiOutlineSearch, AiOutlineMenu } from "react-icons/ai";
 import { BsPencilSquare } from "react-icons/bs";
 import { useState } from "react";
-const Nav = () => {
+
+function Nav() {
   // usernav show/close
   const [menuShow, setMenuShow] = useState(false);
 
@@ -27,7 +28,7 @@ const Nav = () => {
   return (
     <>
       <nav className="userNav">
-        <div className="navImage"></div>
+        <div className="navImage" />
         <div className="navIcon">
           <AiOutlineMenu onClick={MenuOpen} />
         </div>
@@ -48,6 +49,6 @@ const Nav = () => {
       <Outlet />
     </>
   );
-};
+}
 
 export default Nav;

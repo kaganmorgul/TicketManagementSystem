@@ -27,6 +27,17 @@
   -moz-box-shadow: 0px 0px 5px $g3;
   -webkit-box-shadow: 0px 0px 5px $g3;
   position: relative;
+  .delete {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    &:hover {
+      color: $r1;
+    }
+  }
 
   .item {
     color: $b2;

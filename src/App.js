@@ -13,7 +13,7 @@ import Admin from "components/Admin/Admin";
 import AdminApplicationList from "components/Admin/AdminApplicationList/AdminApplicationList";
 import AdminApplicationDetail from "components/Admin/AdminApplicationDetail/AdminApplicationDetail";
 
-const App = () => {
+function App() {
   return (
     <div className="App">
       <BrowserRouter>
@@ -40,6 +40,6 @@ const App = () => {
       </BrowserRouter>
     </div>
   );
-};
+}
 
 export default App;
