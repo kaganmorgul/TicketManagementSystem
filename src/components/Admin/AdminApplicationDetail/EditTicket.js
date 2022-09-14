@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import Alert from "./Alert";
+import Alert from "../../Other/Alert";
 import "./EditTicket.scss";
 import Context from "context/Context";
 // icons
@@ -11,30 +11,12 @@ import {
   BiCommentAdd,
 } from "react-icons/bi";
 import { BsCheckLg } from "react-icons/bs";
-import { FaTimes, FaMinus } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 
-function EditTicket({ alerts, setAlerts, ticket, openSetting }) {
+function EditTicket({ ticket, ticketSetting }) {
   const data = useContext(Context);
 
   const [commentArea, setCommentArea] = useState(false);
-
-  // alert Messages
-  const alertMsg = {
-    APPROVE: "Ticket Onaylandı",
-    WAIT: "Ticket Beklemeye alındı",
-    REJECT: "Ticket Reddedildi",
-    FAV_TRUE: "Favorilere Eklendi",
-    FAV_FALSE: "Favorilerden Çıkartıldı",
-    COMMENT_ADD: "Yorum Eklendi",
-    COMMENT_CLEAR: "Yorum Temizlendi",
-  };
-
-  // Alert Class
-  const alertClass = () => {
-    let className = "";
-    alerts.show ? (className = "alert active") : (className = "alert");
-    return className;
-  };
 
   // set Local Storage when update
   const updateLS = (ls, value) => {
@@ -56,7 +38,7 @@ function EditTicket({ alerts, setAlerts, ticket, openSetting }) {
     });
     data.setComments("");
     updateLS("ticket", newListForComment);
-    setAlerts({ show: true, status: alertMsg.COMMENT_ADD });
+    data.setAlerts({ show: true, status: data.alertMsg.COMMENT_ADD });
   };
 
   // remove comment
@@ -69,7 +51,7 @@ function EditTicket({ alerts, setAlerts, ticket, openSetting }) {
     });
     data.setComments("");
     localStorage.setItem("ticket", JSON.stringify(dataforremovecomment));
-    setAlerts({ show: true, status: alertMsg.COMMENT_CLEAR });
+    data.setAlerts({ show: true, status: data.alertMsg.COMMENT_CLEAR });
   };
 
   // open & close comment area
@@ -91,7 +73,7 @@ function EditTicket({ alerts, setAlerts, ticket, openSetting }) {
       return i;
     });
     updateLS("ticket", newListForApprove);
-    setAlerts({ show: true, status: alertMsg.APPROVE });
+    data.setAlerts({ show: true, status: data.alertMsg.APPROVE });
   };
 
   // ticket reject
@@ -103,7 +85,7 @@ function EditTicket({ alerts, setAlerts, ticket, openSetting }) {
       return i;
     });
     updateLS("ticket", newListForReject);
-    setAlerts({ show: true, status: alertMsg.REJECT });
+    data.setAlerts({ show: true, status: data.alertMsg.REJECT });
   };
 
   // ticket wait
@@ -115,7 +97,7 @@ function EditTicket({ alerts, setAlerts, ticket, openSetting }) {
       return i;
     });
     localStorage.setItem("ticket", JSON.stringify(newforwait));
-    setAlerts({ show: true, status: alertMsg.WAIT });
+    data.setAlerts({ show: true, status: data.alertMsg.WAIT });
   };
 
   // ticket fav
@@ -124,8 +106,8 @@ function EditTicket({ alerts, setAlerts, ticket, openSetting }) {
       if (i.ticketno === favoriteID) {
         i.favorite = !i.favorite;
         i.favorite
-          ? setAlerts({ show: true, status: alertMsg.FAV_TRUE })
-          : setAlerts({ show: true, status: alertMsg.FAV_FALSE });
+          ? data.setAlerts({ show: true, status: data.alertMsg.FAV_TRUE })
+          : data.setAlerts({ show: true, status: data.alertMsg.FAV_FALSE });
       }
       return i;
     });
@@ -149,9 +131,8 @@ function EditTicket({ alerts, setAlerts, ticket, openSetting }) {
   };
 
   return (
-    <div className="cardSetting">
-      <FaMinus onClick={openSetting} />
-      <Alert alerts={alerts} alertClass={alertClass} />
+    <div className={ticketSetting ? "cardSetting active" : "cardSetting"}>
+      <Alert />
       <ul className="cardSettingItems">
         <li className="cardSettingItem">
           <p>Onayla</p>

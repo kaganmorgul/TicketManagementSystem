@@ -1,10 +1,10 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import Context from "context/Context";
 import "./AdminApplicationDetail.scss";
 
 // icons
-import { AiOutlineRollback } from "react-icons/ai";
+import { AiOutlineRollback, AiFillEdit } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 import EditTicket from "./EditTicket";
 
@@ -17,10 +17,7 @@ function AdminApplicationDetail() {
 
   const [ticketSetting, setTicketSetting] = useState(false);
 
-  const [alerts, setAlerts] = useState({
-    show: false,
-    status: "",
-  });
+  const [editInfo, setEditInfo] = useState(false);
 
   // find ticket
   const ticket = data.getFormDataFromLS.find(
@@ -36,22 +33,11 @@ function AdminApplicationDetail() {
     ticket.status === data.classStatus.APPROVED
       ? (className = data.classStatus.APPROVE)
       : ticket.status === data.classStatus.WAITING
-        ? (className = data.classStatus.WAIT)
-        : (className = data.classStatus.REJECT);
+      ? (className = data.classStatus.WAIT)
+      : (className = data.classStatus.REJECT);
 
     return className;
   };
-
-  // Alerts control
-  useEffect(() => {
-    alerts.show &&
-      setTimeout(() => {
-        setAlerts({
-          show: false,
-          status: "",
-        });
-      }, 2000);
-  }, [alerts.show, alerts.status]);
 
   // open ticket setting
   const openSetting = () => {
@@ -61,10 +47,22 @@ function AdminApplicationDetail() {
   return (
     <div className="AdminBasvuruDetay">
       <h1 className="title">{`${ticket.ticketno} No'lu Ticket`}</h1>
-      <div className="card">
+      <div className={ticketSetting ? "card passive" : "card"}>
+        {<EditTicket ticket={ticket} ticketSetting={ticketSetting} />}
         <img className="photo" src={ticket.photo} alt="" />
         <button className="editButton" onClick={openSetting}>
-          <FaEdit />
+          {ticketSetting ? (
+            <AiFillEdit />
+          ) : (
+            <FaEdit
+              onMouseOver={() => setEditInfo(true)}
+              onMouseLeave={() => setEditInfo(false)}
+              onClick={() => setEditInfo(false)}
+            />
+          )}
+          <span className={editInfo ? "info active" : "info"}>
+            Ticket düzenle
+          </span>
         </button>
         <button onClick={backToPreviousPage} className="backicon">
           <AiOutlineRollback />
@@ -108,14 +106,6 @@ function AdminApplicationDetail() {
             <span>{ticket.comment}</span>
           </li>
         </ul>
-        {ticketSetting && (
-          <EditTicket
-            alerts={alerts}
-            setAlerts={setAlerts}
-            ticket={ticket}
-            openSetting={openSetting}
-          />
-        )}
       </div>
     </div>
   );
