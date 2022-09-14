@@ -34,6 +34,24 @@
     background: none;
     border: none;
     font-size: 2rem;
+    .info {
+      content: "";
+      position: absolute;
+      top: -100%;
+      right: 0px;
+      width: 80px;
+      background-color: rgba(0, 0, 0, 0.603);
+      color: #fff;
+      font-size: 1.2rem;
+      padding: 0.3rem;
+      border-radius: 5px;
+      z-index: 2;
+      display: none;
+      text-align: center;
+    }
+    .info.active {
+      display: block;
+    }
     &:hover {
       color: $r1;
     }
@@ -55,6 +73,27 @@
         font-size: 1.5rem;
         color: $g5;
       }
+    }
+  }
+  .ticketDetail {
+    position: relative;
+    .info {
+      content: "";
+      position: absolute;
+      bottom: -100%;
+      right: 0px;
+      width: 80px;
+      background-color: rgba(0, 0, 0, 0.603);
+      color: #fff;
+      font-size: 1.2rem;
+      padding: 0.3rem;
+      border-radius: 5px;
+      z-index: 2;
+      display: none;
+      text-align: center;
+    }
+    .info.active {
+      display: block;
     }
   }
 }

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
 import Context from "context/Context";
 import "./AdminApplicationList.scss";
+import TicketBox from "./TicketBox";
 
 // icons
 import { BiTime } from "react-icons/bi";
@@ -10,10 +10,8 @@ import {
   AiOutlineCheckCircle,
   AiOutlineUnorderedList,
   AiOutlineStar,
-  AiOutlineDelete,
 } from "react-icons/ai";
 import { TiDeleteOutline } from "react-icons/ti";
-import { BsBoxArrowRight } from "react-icons/bs";
 
 function AdminTicketList() {
   const data = useContext(Context);
@@ -91,17 +89,6 @@ function AdminTicketList() {
     return buttons;
   };
 
-  // remove ticket
-  const removeTicket = (removeID) => {
-    const remove = data.getFormDataFromLS
-      .filter((i) => i.ticketno != removeID.ticketno)
-      .map((i) => {
-        return i;
-      });
-    data.setFilterTickets(remove);
-    localStorage.setItem("ticket", JSON.stringify(remove));
-  };
-
   // Admin ticket search
   const searchTicket = () => {
     const search = data.filterTickets
@@ -113,49 +100,8 @@ function AdminTicketList() {
               .trim()
               .includes(searchId.toLocaleLowerCase().trim())
       )
-      .map((i) => data.filterTickets && ticketBox(i));
+      .map((i) => data.filterTickets && <TicketBox i={i} />);
     return search;
-  };
-
-  const ticketBox = (i) => {
-    return (
-      <ul className="items">
-        <button onClick={() => removeTicket(i)} className="delete">
-          <AiOutlineDelete />
-        </button>
-        <li className="item">
-          <h4>Ticketno:</h4>
-          <span>{i.ticketno}</span>
-        </li>
-        <li className="item">
-          <h4>Konu:</h4>
-          <span>{i.reason.substring(0, 15)}</span>
-        </li>
-        <li className="item">
-          <h4>Durum:</h4>
-          <span
-            className={
-              i.status === data.classStatus.APPROVED
-                ? data.classStatus.APPROVE
-                : i.status === data.classStatus.WAITING
-                ? data.classStatus.WAIT
-                : data.classStatus.REJECT
-            }
-          >
-            {i.status.substring(0, 15)}
-          </span>
-        </li>
-
-        <li className="item">
-          <span>
-            <Link to={`/admin/basvuru/${i.ticketno}`}>
-              <BsBoxArrowRight />
-            </Link>
-          </span>
-          <span>{i.today.substring(0, 15)}</span>
-        </li>
-      </ul>
-    );
   };
 
   return (
