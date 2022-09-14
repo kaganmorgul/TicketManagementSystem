@@ -38,7 +38,11 @@ function EditTicket({ ticket, ticketSetting }) {
     });
     data.setComments("");
     updateLS("ticket", newListForComment);
-    data.setAlerts({ show: true, status: data.alertMsg.COMMENT_ADD });
+    data.setAlerts({
+      show: true,
+      status: data.alertMsg.COMMENT_ADD,
+      time: 2000,
+    });
   };
 
   // remove comment
@@ -51,7 +55,11 @@ function EditTicket({ ticket, ticketSetting }) {
     });
     data.setComments("");
     localStorage.setItem("ticket", JSON.stringify(dataforremovecomment));
-    data.setAlerts({ show: true, status: data.alertMsg.COMMENT_CLEAR });
+    data.setAlerts({
+      show: true,
+      status: data.alertMsg.COMMENT_CLEAR,
+      time: 2000,
+    });
   };
 
   // open & close comment area
@@ -73,7 +81,7 @@ function EditTicket({ ticket, ticketSetting }) {
       return i;
     });
     updateLS("ticket", newListForApprove);
-    data.setAlerts({ show: true, status: data.alertMsg.APPROVE });
+    data.setAlerts({ show: true, status: data.alertMsg.APPROVE, time: 2000 });
   };
 
   // ticket reject
@@ -85,7 +93,7 @@ function EditTicket({ ticket, ticketSetting }) {
       return i;
     });
     updateLS("ticket", newListForReject);
-    data.setAlerts({ show: true, status: data.alertMsg.REJECT });
+    data.setAlerts({ show: true, status: data.alertMsg.REJECT, time: 2000 });
   };
 
   // ticket wait
@@ -97,7 +105,7 @@ function EditTicket({ ticket, ticketSetting }) {
       return i;
     });
     localStorage.setItem("ticket", JSON.stringify(newforwait));
-    data.setAlerts({ show: true, status: data.alertMsg.WAIT });
+    data.setAlerts({ show: true, status: data.alertMsg.WAIT, time: 2000 });
   };
 
   // ticket fav
@@ -106,8 +114,16 @@ function EditTicket({ ticket, ticketSetting }) {
       if (i.ticketno === favoriteID) {
         i.favorite = !i.favorite;
         i.favorite
-          ? data.setAlerts({ show: true, status: data.alertMsg.FAV_TRUE })
-          : data.setAlerts({ show: true, status: data.alertMsg.FAV_FALSE });
+          ? data.setAlerts({
+              show: true,
+              status: data.alertMsg.FAV_TRUE,
+              time: 2000,
+            })
+          : data.setAlerts({
+              show: true,
+              status: data.alertMsg.FAV_FALSE,
+              time: 2000,
+            });
       }
       return i;
     });

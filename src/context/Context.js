@@ -46,6 +46,44 @@ export function Provider({ children }) {
   const [adminEmail, setAdminEmail] = useState("");
   const [adminPassword, setAdminPassword] = useState("");
 
+  //alerts
+  const [alerts, setAlerts] = useState({
+    show: false,
+    status: "",
+    time: 2000,
+  });
+
+  // Alerts control
+  useEffect(() => {
+    alerts.show &&
+      setTimeout(() => {
+        setAlerts({
+          show: false,
+          status: "",
+          time: 2000,
+        });
+      }, alerts.time);
+  }, [alerts.show]);
+
+  // alert Messages
+  const alertMsg = {
+    APPROVE: "Ticket Onaylandı",
+    WAIT: "Ticket Beklemeye alındı",
+    REJECT: "Ticket Reddedildi",
+    FAV_TRUE: "Favorilere Eklendi",
+    FAV_FALSE: "Favorilerden Çıkartıldı",
+    COMMENT_ADD: "Yorum Eklendi",
+    COMMENT_CLEAR: "Yorum Temizlendi",
+    FORM_IS_NOT_VALID: "Geçerli Bilgilier Giriniz",
+  };
+
+  // Alert Class
+  const alertClass = () => {
+    let className = "";
+    alerts.show ? (className = "alert active") : (className = "alert");
+    return className;
+  };
+
   // class status
   const classStatus = {
     APPROVED: "onaylandı",
@@ -85,6 +123,10 @@ export function Provider({ children }) {
     classStatus,
     filterTickets,
     setFilterTickets,
+    alerts,
+    setAlerts,
+    alertMsg,
+    alertClass,
   };
   return <Context.Provider value={vals}>{children}</Context.Provider>;
 }

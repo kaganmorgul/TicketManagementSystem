@@ -97,7 +97,11 @@ function CreateApplication() {
 
   const info = () => {
     !isValid &&
-      data.setAlerts({ show: true, status: data.alertMsg.FORM_IS_NOT_VALID });
+      data.setAlerts({
+        show: true,
+        status: data.alertMsg.FORM_IS_NOT_VALID,
+        time: 5000,
+      });
   };
 
   // basvuru input className
