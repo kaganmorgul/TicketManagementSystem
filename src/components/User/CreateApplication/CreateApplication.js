@@ -4,6 +4,7 @@ import "./CreateApplication.scss";
 import { useFormik } from "formik";
 import Context from "context/Context";
 import validations from "config/validations";
+import Alert from "components/Other/Alert";
 // icons
 import {
   FaExclamation,
@@ -14,9 +15,6 @@ import {
 function CreateApplication() {
   const navigate = useNavigate();
   const data = useContext(Context);
-  const getFormDataFromLS = localStorage.getItem("ticket")
-    ? JSON.parse(localStorage.getItem("ticket"))
-    : [];
   let val = {};
   const {
     touched,
@@ -67,16 +65,21 @@ function CreateApplication() {
         photo: data.numForImage,
       };
       data.setFormData([
-        ...getFormDataFromLS,
+        ...data.getFormDataFromLS,
         {
           ...val,
         },
       ]);
-      data.setFilterTickets(...getFormDataFromLS, {
-        ...val,
-      });
+      data.setFilterTickets([
+        ...data.getFormDataFromLS,
+        {
+          ...val,
+        },
+      ]);
     },
   });
+
+  // Local storage add form values
   useEffect(() => {
     localStorage.setItem("ticket", JSON.stringify(data.formdata));
   }, [data.formdata]);
@@ -90,6 +93,11 @@ function CreateApplication() {
           100
         )}.jpg`
       );
+  };
+
+  const info = () => {
+    !isValid &&
+      data.setAlerts({ show: true, status: data.alertMsg.FORM_IS_NOT_VALID });
   };
 
   // basvuru input className
@@ -191,6 +199,7 @@ function CreateApplication() {
     <div className="createTicket">
       <h1 className="title">Başvuru Formu</h1>
       <div className="container">
+        <Alert />
         <form className="ticketForm" onSubmit={handleSubmit}>
           <div className={inputStatus(touched.firstName, errors.firstName)}>
             <input
@@ -279,7 +288,10 @@ function CreateApplication() {
           </div>
           <button
             type="submit"
-            onClick={direct}
+            onClick={() => {
+              direct();
+              info();
+            }}
             className="applicationFormButton"
           >
             Gönder

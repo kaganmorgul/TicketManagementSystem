@@ -9,6 +9,7 @@
     font-size: 3rem;
   }
   .container {
+    overflow: hidden;
     position: relative;
     max-width: 500px;
     margin: 3rem auto;
@@ -64,7 +65,7 @@
       z-index: -2;
       color: $w1;
       font-size: 1.5rem;
-      background-color: $r2;
+      background-color: $r1;
       text-align: center;
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
