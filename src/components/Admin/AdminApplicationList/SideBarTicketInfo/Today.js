@@ -8,9 +8,10 @@ import "./Today.scss";
 const People = () => {
   const data = useContext(Context);
   const [openInfos, setOpenInfos] = useState(false);
+  const todayTickets = data.getFormDataFromLS;
 
   const todayTicketControl = () => {
-    const list = data.getFormDataFromLS
+    const list = todayTickets
       .filter((i) => i.today === data.today)
       .map((i) => {
         return (
@@ -32,13 +33,13 @@ const People = () => {
         <p> Bugün Gönderilenler</p>
         <small>{todayTicketControl().length}</small>
       </button>
-      {todayTicketControl().length > 1 ? (
-        <ul className={openInfos ? "collapseInfo active" : "collapseInfo"}>
-          {todayTicketControl()}
-        </ul>
-      ) : (
-        <p className="noTicketMessage">{"Henüz Ticket Gönderilmemiş"}</p>
-      )}
+      <ul className={openInfos ? "collapseInfo active" : "collapseInfo"}>
+        {todayTicketControl().length > 0 ? (
+          todayTicketControl()
+        ) : (
+          <p className="noTicketMessage">{"Bugün Ticket Gönderilmemiş"}</p>
+        )}
+      </ul>
     </>
   );
 };

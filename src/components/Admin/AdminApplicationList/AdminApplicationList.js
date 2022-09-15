@@ -6,6 +6,7 @@ import SideBarInfo from "./SideBarTicketInfo/SideBarInfo";
 
 // icons
 import { BiTime } from "react-icons/bi";
+import { BsArrowUpCircle } from "react-icons/bs";
 import {
   AiOutlineSearch,
   AiOutlineCheckCircle,
@@ -15,6 +16,7 @@ import {
   AiOutlineMenuUnfold,
 } from "react-icons/ai";
 import { TiDeleteOutline } from "react-icons/ti";
+import { useEffect } from "react";
 
 function AdminTicketList() {
   const data = useContext(Context);
@@ -24,6 +26,8 @@ function AdminTicketList() {
   const [searchId, setSearchId] = useState("");
 
   const [rightSideShow, setRightSideShow] = useState(false);
+
+  const [showBtn, setShowBtn] = useState(false);
 
   const filterButtons = [
     {
@@ -113,6 +117,18 @@ function AdminTicketList() {
     return search;
   };
 
+  useEffect(
+    () =>
+      window.addEventListener("scroll", () => {
+        if (window.screenY > 100) {
+          setShowBtn(true);
+        } else {
+          setShowBtn(false);
+        }
+      }),
+    []
+  );
+
   return (
     <div className="adminTicketListPage">
       <button
@@ -173,6 +189,7 @@ function AdminTicketList() {
         </button>
         <SideBarInfo />
       </div>
+      {showBtn && <BsArrowUpCircle className="bottomToTop" />}
     </div>
   );
 }

@@ -32,13 +32,13 @@
   }
   .collapseInfo {
     overflow: scroll;
-    height: 0;
+    max-height: 0;
     transition: all 0.3s;
     &::-webkit-scrollbar {
       display: none;
     }
   }
   .collapseInfo.active {
-    height: 50vh;
+    max-height: 50vh;
   }
 }

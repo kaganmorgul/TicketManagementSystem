@@ -11,6 +11,9 @@
     right: 2%;
     background: none;
     border: none;
+    @media screen and (max-width: 800px) {
+      top: 22%;
+    }
   }
   .closeRightSideIcon {
     margin: 1rem;
@@ -248,4 +251,10 @@
       }
     }
   }
+}
+.bottomToTop {
+  position: fixed;
+  bottom: 5%;
+  left: 5%;
+  font-size: 3rem;
 }
