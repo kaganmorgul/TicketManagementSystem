@@ -64,13 +64,15 @@ function AdminTicketList() {
   // ticket count
   const ticketCount = (category) => {
     const a = data.getFormDataFromLS.filter((i) => i.status === category);
-    return <p>{a.length}</p>;
+    let count = a.length;
+    return count;
   };
 
   // favorite ticket count
   const ticketFavCount = () => {
     const a = data.getFormDataFromLS.filter((i) => i.favorite === true);
-    return <p>{a.length}</p>;
+    let count = a.length;
+    return count;
   };
 
   // filter buttons map function
@@ -83,7 +85,9 @@ function AdminTicketList() {
       >
         <span>{filterButton.icon}</span>
         {filterButton.name}
-        <span className="count">{ticketCount(filterButton.name)}</span>
+        {ticketCount(filterButton.name) > 0 && (
+          <span className="count">{ticketCount(filterButton.name)}</span>
+        )}
       </button>
     ));
     return buttons;
@@ -112,7 +116,9 @@ function AdminTicketList() {
             <AiOutlineUnorderedList />
           </span>
           Hepsi
-          <span className="count">{data.getFormDataFromLS.length}</span>
+          {data.getFormDataFromLS.length > 0 && (
+            <span className="count">{data.getFormDataFromLS.length}</span>
+          )}
         </button>
         {writeFilterButton()}
         <button className="item" onClick={filterFav}>
@@ -120,7 +126,9 @@ function AdminTicketList() {
             <AiOutlineStar />
           </span>
           Favoriler
-          <span className="count">{ticketFavCount()}</span>
+          {ticketFavCount() > 0 && (
+            <span className="count">{ticketFavCount()}</span>
+          )}
         </button>
       </div>
       <div className="adminSearchArea">
