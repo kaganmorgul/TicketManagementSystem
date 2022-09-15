@@ -1,6 +1,56 @@
 @import "../../../sass/variable";
 .adminTicketListPage {
+  overflow-x: hidden;
   font-size: 2rem;
+  display: flex;
+  background-color: $w2;
+  .openRightSideIcon {
+    position: fixed;
+    font-size: 3rem;
+    top: 15%;
+    right: 2%;
+    background: none;
+    border: none;
+  }
+  .closeRightSideIcon {
+    margin: 1rem;
+    font-size: 3rem;
+    top: 10%;
+    right: 2%;
+    background: none;
+    border: none;
+    z-index: 1;
+  }
+
+  .leftSide {
+    background-color: #fff;
+    width: 100%;
+    height: 90vh;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .rightSide {
+    background-color: $w3;
+    width: 230px;
+    height: 90vh;
+    right: 0;
+    overflow-y: scroll;
+    transition: all 0.2s;
+    transform: translateX(100%);
+    position: fixed;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    h4 {
+      text-align: center;
+      margin: 1rem;
+    }
+  }
+  .rightSide.active {
+    transform: translateX(0%);
+  }
   h1 {
     text-align: center;
     margin: 2rem auto;

@@ -1,0 +1,44 @@
+@import "../../../../sass/variable";
+
+.rightSideCollapse {
+  button {
+    background-color: $w2;
+    display: flex;
+    width: 100%;
+    border: none;
+    font-weight: bold;
+    align-items: center;
+    padding: 0.3rem;
+    border-left: 2px solid $b2;
+    justify-content: space-between;
+    transition: all 0.2s;
+    &:hover {
+      background-color: darken($w2, 10%);
+    }
+
+    span {
+      font-size: 1.8rem;
+      margin-left: 1rem;
+    }
+    small {
+      background-color: orange;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      color: $w1;
+      margin-right: 1rem;
+      @include flexr;
+    }
+  }
+  .collapseInfo {
+    overflow: scroll;
+    height: 0;
+    transition: all 0.3s;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .collapseInfo.active {
+    height: 50vh;
+  }
+}

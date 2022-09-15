@@ -1,6 +1,6 @@
 @import "../../../sass/variable";
 .navbar {
-  height: 80px;
+  height: 10vh;
   width: 100%;
   @include flex1;
   justify-content: space-between;
@@ -17,7 +17,7 @@
 }
 .adminNav {
   z-index: 9;
-
+  position: fixed;
   height: 100%;
   width: 25rem;
   transform: translateX(-100%);

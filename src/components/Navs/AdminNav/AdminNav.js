@@ -61,7 +61,7 @@ function AdminNav() {
           <li className="listItem">
             <BiLogOut />
             <button className="exitButton" onClick={exit}>
-                          Çıkış
+              Çıkış
             </button>
           </li>
         </ul>

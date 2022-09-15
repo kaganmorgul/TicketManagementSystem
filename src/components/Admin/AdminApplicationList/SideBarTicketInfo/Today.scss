@@ -1,0 +1,23 @@
+@import "../../../../sass/variable";
+.collapseTicketInfo {
+  background-color: $w1;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 10px;
+  margin: 0.4rem;
+  padding: 0.2rem;
+  a {
+    color: $b2;
+  }
+  p {
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
+}
+.noTicketMessage {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  color: $b2;
+}

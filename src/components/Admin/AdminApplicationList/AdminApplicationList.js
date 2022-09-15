@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import Context from "context/Context";
 import "./AdminApplicationList.scss";
 import TicketBox from "./TicketBox";
+import SideBarInfo from "./SideBarTicketInfo/SideBarInfo";
 
 // icons
 import { BiTime } from "react-icons/bi";
@@ -10,6 +11,8 @@ import {
   AiOutlineCheckCircle,
   AiOutlineUnorderedList,
   AiOutlineStar,
+  AiOutlineMenuFold,
+  AiOutlineMenuUnfold,
 } from "react-icons/ai";
 import { TiDeleteOutline } from "react-icons/ti";
 
@@ -19,6 +22,8 @@ function AdminTicketList() {
   //   const [selectedCategory, setSelectedCategory] = useState("Hepsi");
 
   const [searchId, setSearchId] = useState("");
+
+  const [rightSideShow, setRightSideShow] = useState(false);
 
   const filterButtons = [
     {
@@ -104,48 +109,70 @@ function AdminTicketList() {
               .trim()
               .includes(searchId.toLocaleLowerCase().trim())
       )
-      .map((i) => data.filterTickets && <TicketBox i={i} />);
+      .map((i) => data.filterTickets && <TicketBox key={i.ticketno} i={i} />);
     return search;
   };
 
   return (
     <div className="adminTicketListPage">
-      <div className="filterButtons">
-        <button className="item" onClick={showAll}>
-          <span>
-            <AiOutlineUnorderedList />
-          </span>
-          Hepsi
-          {data.getFormDataFromLS.length > 0 && (
-            <span className="count">{data.getFormDataFromLS.length}</span>
-          )}
-        </button>
-        {writeFilterButton()}
-        <button className="item" onClick={filterFav}>
-          <span>
-            <AiOutlineStar />
-          </span>
-          Favoriler
-          {ticketFavCount() > 0 && (
-            <span className="count">{ticketFavCount()}</span>
-          )}
-        </button>
-      </div>
-      <div className="adminSearchArea">
-        <div className="input">
-          <input
-            type="text"
-            placeholder="Enter issue"
-            value={searchId}
-            onChange={(e) => setSearchId(e.target.value)}
-          />
-          <button>
-            <AiOutlineSearch />
+      <button
+        onClick={() => {
+          setRightSideShow(!rightSideShow);
+        }}
+        className="openRightSideIcon"
+      >
+        <AiOutlineMenuFold />
+      </button>
+      <div className="leftSide">
+        <div className="filterButtons">
+          <button className="item" onClick={showAll}>
+            <span>
+              <AiOutlineUnorderedList />
+            </span>
+            Hepsi
+            {data.getFormDataFromLS.length > 0 && (
+              <span className="count">{data.getFormDataFromLS.length}</span>
+            )}
+          </button>
+          {writeFilterButton()}
+          <button className="item" onClick={filterFav}>
+            <span>
+              <AiOutlineStar />
+            </span>
+            Favoriler
+            {ticketFavCount() > 0 && (
+              <span className="count">{ticketFavCount()}</span>
+            )}
           </button>
         </div>
+        <div className="adminSearchArea">
+          <div className="input">
+            <input
+              type="text"
+              placeholder="Enter issue"
+              value={searchId}
+              onChange={(e) => setSearchId(e.target.value)}
+            />
+            <button>
+              <AiOutlineSearch />
+            </button>
+          </div>
+        </div>
+        {/* <h3 className="categoryTitle">{selectedCategory}</h3> */}
+        <div className="adminTicketList">{searchTicket()}</div>
       </div>
-      {/* <h3 className="categoryTitle">{selectedCategory}</h3> */}
-      <div className="adminTicketList">{searchTicket()}</div>
+
+      <div className={rightSideShow ? "rightSide active" : "rightSide"}>
+        <button
+          onClick={() => {
+            setRightSideShow(!rightSideShow);
+          }}
+          className="closeRightSideIcon"
+        >
+          <AiOutlineMenuUnfold />
+        </button>
+        <SideBarInfo />
+      </div>
     </div>
   );
 }
