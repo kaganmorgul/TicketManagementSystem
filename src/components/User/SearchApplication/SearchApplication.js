@@ -23,21 +23,24 @@ function SearchApplication() {
 
   const findTickets = (searchVal) => {
     const findItem = data.getFormDataFromLS.find(
-      (i) => i.ticketno === parseInt(searchVal),
+      (i) => i.ticketno === parseInt(searchVal)
     );
     setMyticket(findItem);
   };
 
-  const foundTicket = () => (
-    myTicket && (
+  const foundTicket = () =>
+    myTicket ? (
       <ul className="ticketList">
         <li className="item">
           <h3 className="number">{`Ticket No: ${myTicket.ticketno} `}</h3>
           {showTicket()}
         </li>
       </ul>
-    )
-  );
+    ) : myTicket !== null ? (
+      <p className="dataNotFind">{"Ticket Bulunamadı..."}</p>
+    ) : (
+      false
+    );
 
   const goDetail = () => {
     setLoading(true);
@@ -54,13 +57,14 @@ function SearchApplication() {
     return className;
   };
 
-  const showTicket = () => (loading ? (
-    <img className="detailLoading" src="../../photos/loading.gif" alt="" />
-  ) : (
-    <button onClick={goDetail} className="detail">
-      <BsBoxArrowUpRight />
-    </button>
-  ));
+  const showTicket = () =>
+    loading ? (
+      <img className="detailLoading" src="../../photos/loading.gif" alt="" />
+    ) : (
+      <button onClick={goDetail} className="detail">
+        <BsBoxArrowUpRight />
+      </button>
+    );
 
   return (
     <div className="ticketSearch">
