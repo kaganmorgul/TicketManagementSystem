@@ -31,7 +31,9 @@ const People = () => {
       <button onClick={() => setOpenInfos(!openInfos)}>
         <span>{openInfos ? <BiDownArrowCircle /> : <BiUpArrowCircle />}</span>
         <p> Bugün Gönderilenler</p>
-        <small>{todayTicketControl().length}</small>
+        {todayTicketControl().length > 0 && (
+          <small>{todayTicketControl().length}</small>
+        )}
       </button>
       <ul className={openInfos ? "collapseInfo active" : "collapseInfo"}>
         {todayTicketControl().length > 0 ? (

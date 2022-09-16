@@ -13,7 +13,9 @@ const People = () => {
       <button onClick={() => setOpenInfos(!openInfos)}>
         <span>{openInfos ? <BiDownArrowCircle /> : <BiUpArrowCircle />}</span>
         Ticket Kişi Listesi
-        <small>{data.getFormDataFromLS.length}</small>
+        {data.getFormDataFromLS.length > 0 && (
+          <small>{data.getFormDataFromLS.length}</small>
+        )}
       </button>
       <ul className={openInfos ? "collapseInfo active" : "collapseInfo"}>
         {data.getFormDataFromLS.map((i) => {

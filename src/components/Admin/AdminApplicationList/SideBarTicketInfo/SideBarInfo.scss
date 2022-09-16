@@ -10,7 +10,6 @@
     align-items: center;
     padding: 0.3rem;
     border-left: 2px solid $b2;
-    justify-content: space-between;
     transition: all 0.2s;
     &:hover {
       background-color: darken($w2, 10%);
@@ -18,9 +17,10 @@
 
     span {
       font-size: 1.8rem;
-      margin-left: 1rem;
+      margin: 0 1rem;
     }
     small {
+      margin: 0 1rem;
       background-color: orange;
       border-radius: 50%;
       width: 20px;
