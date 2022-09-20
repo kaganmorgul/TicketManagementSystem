@@ -20,7 +20,7 @@ function Success() {
   useEffect(() => {
     setTimeout(() => {
       navigate("../", { replace: true });
-    }, 200);
+    }, 7000);
   });
   return (
     data.successControl && (
