@@ -113,6 +113,21 @@ function AdminTicketList() {
     return search;
   };
 
+  const resultOfSearch = () => {
+    return (
+      searchId.length > 0 &&
+      (searchTicket().length === 0 ? (
+        <h3 className="searchReasultInfo">
+          {"Bu başlık ile ilgili sonuç bulunamadı.. "}
+        </h3>
+      ) : (
+        <h3 className="searchReasultInfo">{`Bu başlık ile ilgili ${
+          searchTicket().length
+        } sonuç bulundu.. `}</h3>
+      ))
+    );
+  };
+
   return (
     <div className="adminTicketListPage">
       <button
@@ -149,7 +164,7 @@ function AdminTicketList() {
           <div className="input">
             <input
               type="text"
-              placeholder="Enter issue"
+              placeholder="Konu"
               value={searchId}
               onChange={(e) => setSearchId(e.target.value)}
             />
@@ -158,7 +173,7 @@ function AdminTicketList() {
             </button>
           </div>
         </div>
-        {/* <h3 className="categoryTitle">{selectedCategory}</h3> */}
+        {resultOfSearch()}
         <div className="adminTicketList">{searchTicket()}</div>
       </div>
 

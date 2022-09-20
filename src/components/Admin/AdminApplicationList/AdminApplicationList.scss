@@ -33,6 +33,90 @@
     &::-webkit-scrollbar {
       display: none;
     }
+    .filterButtons {
+      @include flex2;
+      margin: 0 auto;
+
+      &::-webkit-scrollbar {
+        height: 4px;
+      }
+      &::-webkit-scrollbar-track {
+        background: $w3;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: $g6;
+      }
+
+      .item {
+        position: relative;
+        margin: 2rem 0.5rem;
+        padding: 1rem;
+        background-color: $w2;
+        border: none;
+        border-radius: 2px;
+        font-weight: bold;
+        @include flex1;
+        font-size: 1.6rem;
+        white-space: nowrap;
+        color: $b2;
+        transition: background-color 200ms;
+        span {
+          margin-right: 1rem;
+        }
+        &:hover {
+          background-color: $g5;
+        }
+        .count {
+          position: absolute;
+          top: -20%;
+          right: -10%;
+          width: 20px;
+          height: 20px;
+          background-color: $y3;
+          border-radius: 50%;
+          color: $w1;
+          @include flexr;
+          font-size: 1.2rem;
+          border: 1px solid $w1;
+        }
+      }
+    }
+    .adminSearchArea {
+      @media screen and (max-width: 500px) {
+        margin-top: 1rem;
+      }
+      @include flexr;
+      .input {
+        display: flex;
+        border: 1px solid $g4;
+        border-radius: 3px;
+        overflow: hidden;
+        input {
+          border: none;
+          width: 80%;
+          padding: 1rem;
+        }
+        button {
+          border: none;
+          width: 20%;
+          font-size: 2rem;
+        }
+      }
+    }
+    .adminTicketList {
+      @include flexr;
+      width: 80%;
+      margin: 2rem auto;
+
+      flex-wrap: wrap;
+    }
+    .searchReasultInfo {
+      text-align: center;
+      margin: 1rem 0;
+      font-size: 2rem;
+      color: $g3;
+      font-weight: 500;
+    }
   }
   .rightSide {
     background-color: $w3;
@@ -64,13 +148,7 @@
     margin-top: 2rem;
   }
 }
-.adminTicketList {
-  @include flexr;
-  width: 80%;
-  margin: 2rem auto;
 
-  flex-wrap: wrap;
-}
 .items {
   border-radius: 5px;
   background-color: $w2;
@@ -147,77 +225,6 @@
     }
     .info.active {
       display: block;
-    }
-  }
-}
-
-.filterButtons {
-  @include flex2;
-  margin: 0 auto;
-
-  &::-webkit-scrollbar {
-    height: 4px;
-  }
-  &::-webkit-scrollbar-track {
-    background: $w3;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: $g6;
-  }
-
-  .item {
-    position: relative;
-    margin: 2rem 0.5rem;
-    padding: 1rem;
-    background-color: $w2;
-    border: none;
-    border-radius: 2px;
-    font-weight: bold;
-    @include flex1;
-    font-size: 1.6rem;
-    white-space: nowrap;
-    color: $b2;
-    transition: background-color 200ms;
-    span {
-      margin-right: 1rem;
-    }
-    &:hover {
-      background-color: $g5;
-    }
-    .count {
-      position: absolute;
-      top: -20%;
-      right: -10%;
-      width: 20px;
-      height: 20px;
-      background-color: $y3;
-      border-radius: 50%;
-      color: $w1;
-      @include flexr;
-      font-size: 1.2rem;
-      border: 1px solid $w1;
-    }
-  }
-}
-.adminSearchArea {
-  @media screen and (max-width: 500px) {
-    margin-top: 1rem;
-  }
-  @include flexr;
-  .input {
-    display: flex;
-    border: 1px solid $g4;
-    border-radius: 3px;
-    overflow: hidden;
-    input {
-      border: none;
-      width: 80%;
-      padding: 1rem;
-    }
-    button {
-      border: none;
-      width: 20%;
-      font-size: 2rem;
     }
   }
 }
