@@ -1,4 +1,4 @@
-import React from "react";
+import "./User.scss";
 import UserNav from "components/Navs/UserNav/UserNav";
 
 function User() {

@@ -9,22 +9,35 @@ function Success() {
   const navigate = useNavigate();
   const data = useContext(Context);
   const [loading, setLoading] = useState(true);
+  const [counter, setCounter] = useState(10);
   useEffect(() => {
-    !data.successControl && navigate("../", { replace: true });
+    if (!data.successControl) {
+      navigate("/error", { replace: true });
+      setCounter(0);
+    }
   });
+
+  useEffect(() => {
+    if (counter === 0) {
+      setCounter(10);
+      navigate("../", { replace: true });
+    }
+  }, [counter]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCounter(counter - 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [counter]);
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 1000);
   });
-  useEffect(() => {
-    setTimeout(() => {
-      navigate("../", { replace: true });
-    }, 7000);
-  });
+
   return (
     data.successControl && (
-      <>
+      <div className="successPage">
         {loading ? (
           <img
             className="successLoading"
@@ -39,9 +52,13 @@ function Success() {
             <span className="icon">
               <AiOutlineCheckCircle />
             </span>
+            <p className="info">
+              <span>{counter}</span> saniye sonra anasayfaya
+              yönlendirileceksiniz.
+            </p>
           </div>
         )}
-      </>
+      </div>
     )
   );
 }

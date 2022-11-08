@@ -14,7 +14,7 @@ export function Provider({ children }) {
   const [comments, setComments] = useState("");
   const [favorite, setFavorite] = useState(false);
   const [filterTickets, setFilterTickets] = useState(getFormDataFromLS);
-
+  const [backTime, setBackTime] = useState(0);
   // random ticket Id
   const [num, setNum] = useState(0);
 
@@ -127,6 +127,8 @@ export function Provider({ children }) {
     setAlerts,
     alertMsg,
     alertClass,
+    backTime,
+    setBackTime,
   };
   return <Context.Provider value={vals}>{children}</Context.Provider>;
 }

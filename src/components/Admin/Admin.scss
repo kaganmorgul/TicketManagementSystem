@@ -1,0 +1,19 @@
+.Admin {
+  min-height: 100vh;
+  &:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.2;
+    position: absolute;
+    min-height: 100vh;
+    background-image: url("../../../public/photos/admin2.jpg");
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+  }
+}

@@ -28,7 +28,6 @@ function Nav() {
   return (
     <>
       <nav className="userNav">
-        <div className="navImage" />
         <div className="navIcon">
           <AiOutlineMenu onClick={MenuOpen} />
         </div>

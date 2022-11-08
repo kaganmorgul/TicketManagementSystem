@@ -6,6 +6,7 @@ import ApplicationDetail from "components/User/ApplicationDetail/ApplicationDeta
 import CreateApplication from "components/User/CreateApplication/CreateApplication";
 import SearchApplication from "components/User/SearchApplication/SearchApplication";
 import PageNotFound from "components/User/PageNotFound/PageNotFound";
+import Error from "components/User/PageNotFound/Error";
 import User from "components/User/User";
 // admin
 import AdminLogin from "components/Admin/AdminLogin/AdminLogin";
@@ -36,6 +37,7 @@ function App() {
           <Route path="basvuru-basarili" element={<ApplicationSuccessful />} />
           <Route path="admin-login" element={<AdminLogin />} />
           <Route path="*" element={<PageNotFound />} />
+          <Route path="error" element={<Error />} />
         </Routes>
       </BrowserRouter>
     </div>

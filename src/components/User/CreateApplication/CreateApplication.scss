@@ -2,26 +2,55 @@
 @import "../../../sass/animations";
 
 .createTicket {
-  .title {
-    text-align: center;
-    margin: 2rem 0;
-    color: $g3;
-    font-size: 3rem;
+  position: relative;
+
+  .createApplication {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translateX(-50%);
+    font-size: 1.4rem;
+    color: grey;
+    font-weight: bold;
+    height: 5rem;
+    width: 15rem;
+    border: none;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.932);
+    box-shadow: 0 0 10px rgb(199, 199, 199),
+      5px 5px 20px rgba(255, 255, 255, 0.61) inset,
+      -5px -5px 20px rgba(204, 202, 202, 0.788) inset;
+    &:hover {
+      background-color: rgba(223, 223, 223, 0.932);
+    }
+    .icon {
+      font-size: 2rem;
+    }
   }
   .container {
     overflow: hidden;
-    position: relative;
-    max-width: 500px;
-    margin: 3rem auto;
-    background-color: $w2;
+    transform: translateY(-300%);
+    width: 500px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.911);
     box-shadow: 0px 0px 8px $g3;
     -moz-box-shadow: 0px 0px 8px $g3;
     -webkit-box-shadow: 0px 0px 8px $g3;
     border-radius: 5px;
+    transition: all 1s;
+  }
+  .container.active {
+    transform: translateY(0%);
+    margin: 3rem auto;
   }
 }
+
 .ticketForm {
   @include flexc;
+
   z-index: 99;
   .input {
     width: 80%;
@@ -156,7 +185,6 @@
     margin: 3rem auto 1rem auto;
     color: $w1;
     border: none;
-    background-color: $w4;
     border-radius: 3px;
     background-color: $prp2;
     &:hover {
@@ -175,7 +203,7 @@
     }
   }
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 600px) {
   .createTicket {
     .container {
       width: 90%;

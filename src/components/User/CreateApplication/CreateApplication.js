@@ -1,10 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CreateApplication.scss";
 import { useFormik } from "formik";
 import Context from "context/Context";
 import validations from "config/validations";
 import Alert from "components/Other/Alert";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 // icons
 import {
   FaExclamation,
@@ -13,9 +14,12 @@ import {
 } from "react-icons/fa";
 
 function CreateApplication() {
+  const [showForm, setShowForm] = useState(false);
   const navigate = useNavigate();
   const data = useContext(Context);
+
   let val = {};
+
   const {
     touched,
     errors,
@@ -26,20 +30,20 @@ function CreateApplication() {
     isValid,
   } = useFormik({
     initialValues: {
-      // firstName: "Kağan",
-      // lastName: "Morgül",
-      // id: 24567893421,
-      // age: 43,
-      // reason: "Internet access",
-      // address: "1572 Southside Lane City Gardena  California",
+      firstName: "Kağan",
+      lastName: "Morgül",
+      id: 24567893421,
+      age: 43,
+      reason: "Internet access",
+      address: "1572 Southside Lane City Gardena  California",
 
-      firstName: "",
-      lastName: "",
-      id: "",
-      age: "",
-      reason: "",
-      address: "",
-      photo: "",
+      // firstName: "",
+      // lastName: "",
+      // id: "",
+      // age: "",
+      // reason: "",
+      // address: "",
+      // photo: "",
     },
     validationSchema: validations,
     onSubmit: (values) => {
@@ -201,10 +205,15 @@ function CreateApplication() {
 
   return (
     <div className="createTicket">
-      <h1 className="title">Başvuru Formu</h1>
-      <div className="container">
+      {!showForm && (
+        <button onClick={() => setShowForm(true)} className="createApplication">
+          Başvuru Formu <AiOutlinePlusCircle className="icon" />
+        </button>
+      )}
+      {/* <h1 className="title">Başvuru Formu</h1> */}
+      <div className={showForm ? "container active" : "container"}>
         <Alert />
-        <form className="ticketForm" onSubmit={handleSubmit}>
+        <form className="ticketForm " onSubmit={handleSubmit}>
           <div className={inputStatus(touched.firstName, errors.firstName)}>
             <input
               required

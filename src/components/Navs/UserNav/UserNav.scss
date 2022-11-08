@@ -1,25 +1,16 @@
 @import "../../../sass/variable";
 
 .userNav {
-  background-color: $w2;
   height: 8rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 99;
   width: 100%;
+  background-color: rgba(255, 255, 255, 0.932);
   position: relative;
-  .navImage {
-    height: 80px;
-    margin-left: 1rem;
-    background-color: rebeccapurple;
-    width: 80px;
-    background-image: url("../../../../public/photos/logo2.png");
-    background-size: cover;
-    object-fit: cover;
-  }
   .list {
     display: flex;
+    margin-left: auto;
     .listItem {
       margin-right: 2rem;
       font-size: 2rem;
@@ -42,6 +33,7 @@
     }
   }
   .navIcon {
+    margin-left: auto;
     display: none;
   }
 }
