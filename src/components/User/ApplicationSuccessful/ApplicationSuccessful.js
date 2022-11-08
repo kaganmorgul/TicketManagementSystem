@@ -9,7 +9,7 @@ function Success() {
   const navigate = useNavigate();
   const data = useContext(Context);
   const [loading, setLoading] = useState(true);
-  const [counter, setCounter] = useState(10);
+  const [counter, setCounter] = useState(1);
   useEffect(() => {
     if (!data.successControl) {
       navigate("/error", { replace: true });

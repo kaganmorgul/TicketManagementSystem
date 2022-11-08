@@ -24,6 +24,7 @@ const TicketBox = ({ i }) => {
 
   return (
     <ul className="items">
+      <div className="index">{i.sort + 1}</div>
       <button
         onMouseOver={() => setInfo(true)}
         onMouseLeave={() => setInfo(false)}

@@ -15,15 +15,17 @@ import {
   AiOutlineMenuUnfold,
 } from "react-icons/ai";
 import { TiDeleteOutline } from "react-icons/ti";
+import { TbArrowsUpDown } from "react-icons/tb";
 
 function AdminTicketList() {
   const data = useContext(Context);
 
-  //   const [selectedCategory, setSelectedCategory] = useState("Hepsi");
-
+  console.log(data.formdata);
   const [searchId, setSearchId] = useState("");
 
   const [rightSideShow, setRightSideShow] = useState(false);
+
+  const [sortButton, setSortButton] = useState(false);
 
   const filterButtons = [
     {
@@ -99,7 +101,7 @@ function AdminTicketList() {
   };
 
   // Admin ticket search
-  const searchTicket = () => {
+  const searchTicketStraight = () => {
     const search = data.filterTickets
       .filter((i) =>
         searchId === ""
@@ -109,20 +111,45 @@ function AdminTicketList() {
               .trim()
               .includes(searchId.toLocaleLowerCase().trim())
       )
-      .map((i) => data.filterTickets && <TicketBox key={i.ticketno} i={i} />);
+      .sort((a, b) => a.sort - b.sort)
+      .map(
+        (i, index) =>
+          data.filterTickets && (
+            <TicketBox key={i.ticketno} index={index} i={i} />
+          )
+      );
+    return search;
+  };
+  const searchTicketReverse = () => {
+    const search = data.filterTickets
+      .filter((i) =>
+        searchId === ""
+          ? i
+          : i.reason
+              .toLocaleLowerCase()
+              .trim()
+              .includes(searchId.toLocaleLowerCase().trim())
+      )
+      .sort((a, b) => b.sort - a.sort)
+      .map(
+        (i, index) =>
+          data.filterTickets && (
+            <TicketBox key={i.ticketno} index={index} i={i} />
+          )
+      );
     return search;
   };
 
   const resultOfSearch = () => {
     return (
       searchId.length > 0 &&
-      (searchTicket().length === 0 ? (
+      (searchTicketStraight().length === 0 ? (
         <h3 className="searchReasultInfo">
           {"Bu başlık ile ilgili sonuç bulunamadı.. "}
         </h3>
       ) : (
         <h3 className="searchReasultInfo">{`Bu başlık ile ilgili ${
-          searchTicket().length
+          searchTicketStraight().length
         } sonuç bulundu.. `}</h3>
       ))
     );
@@ -161,6 +188,9 @@ function AdminTicketList() {
           </button>
         </div>
         <div className="adminSearchArea">
+          <div className="sort" onClick={() => setSortButton(!sortButton)}>
+            <TbArrowsUpDown />
+          </div>
           <div className="input">
             <input
               type="text"
@@ -174,7 +204,9 @@ function AdminTicketList() {
           </div>
         </div>
         {resultOfSearch()}
-        <div className="adminTicketList">{searchTicket()}</div>
+        <div className="adminTicketList">
+          {sortButton ? searchTicketStraight() : searchTicketReverse()}
+        </div>
       </div>
 
       <div className={rightSideShow ? "rightSide active" : "rightSide"}>

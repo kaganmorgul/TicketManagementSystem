@@ -1,5 +1,8 @@
 @import "../../../sass/variable";
 .navbar {
+  position: sticky;
+  z-index: 3;
+  top: 0;
   height: 10vh;
   width: 100%;
   @include flex1;

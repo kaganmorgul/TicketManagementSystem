@@ -15,6 +15,8 @@ export function Provider({ children }) {
   const [favorite, setFavorite] = useState(false);
   const [filterTickets, setFilterTickets] = useState(getFormDataFromLS);
   const [backTime, setBackTime] = useState(0);
+  const [sort, setSort] = useState(0);
+
   // random ticket Id
   const [num, setNum] = useState(0);
 
@@ -129,6 +131,8 @@ export function Provider({ children }) {
     alertClass,
     backTime,
     setBackTime,
+    setSort,
+    sort,
   };
   return <Context.Provider value={vals}>{children}</Context.Provider>;
 }

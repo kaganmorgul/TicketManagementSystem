@@ -1,5 +1,6 @@
 @import "../../../sass/variable";
 .AdminBasvuruDetay {
+  min-height: 100vh;
   .title {
     text-align: center;
     margin: 2rem 0;
@@ -7,7 +8,7 @@
   .card {
     max-width: 450px;
     background-color: $w2;
-    margin: 1rem auto;
+    margin: 3rem auto;
     position: relative;
     border-radius: 0.5rem;
     overflow: hidden;

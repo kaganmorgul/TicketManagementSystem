@@ -48,6 +48,7 @@ function CreateApplication() {
     validationSchema: validations,
     onSubmit: (values) => {
       if (isValid) {
+        data.setSort(data.sort + 1);
         data.setSuccessControl(true);
         navigate("/basvuru-basarili");
       } else {
@@ -55,6 +56,7 @@ function CreateApplication() {
         navigate("/");
       }
       val = {
+        sort: data.sort,
         firstname: values.firstName,
         lastname: values.lastName,
         id: values.id,
