@@ -35,6 +35,12 @@ const TicketBox = ({ i }) => {
         <span className={info ? "info active" : "info"}>Ticket sil</span>
       </button>
       <li className="item">
+        <h4>İsim:</h4>
+        <span>
+          {i.firstname.charAt(0).toUpperCase() + i.firstname.slice(1)}
+        </span>
+      </li>
+      <li className="item">
         <h4>Ticketno:</h4>
         <span>{i.ticketno}</span>
       </li>

@@ -15,18 +15,15 @@ import {
   AiOutlineMenuUnfold,
 } from "react-icons/ai";
 import { TiDeleteOutline } from "react-icons/ti";
-import { TbArrowsUpDown } from "react-icons/tb";
 
 function AdminTicketList() {
   const data = useContext(Context);
 
-  console.log(data.formdata);
   const [searchId, setSearchId] = useState("");
 
   const [rightSideShow, setRightSideShow] = useState(false);
 
-  const [sortButton, setSortButton] = useState(false);
-
+  const [sortButton, setSortButton] = useState("1-9");
   const filterButtons = [
     {
       id: 1,
@@ -139,7 +136,44 @@ function AdminTicketList() {
       );
     return search;
   };
-
+  const searchTicketNameStraight = () => {
+    const search = data.filterTickets
+      .filter((i) =>
+        searchId === ""
+          ? i
+          : i.reason
+              .toLocaleLowerCase()
+              .trim()
+              .includes(searchId.toLocaleLowerCase().trim())
+      )
+      .sort((a, b) => (a.firstname > b.firstname ? 1 : -1))
+      .map(
+        (i, index) =>
+          data.filterTickets && (
+            <TicketBox key={i.ticketno} index={index} i={i} />
+          )
+      );
+    return search;
+  };
+  const searchTicketNameReverse = () => {
+    const search = data.filterTickets
+      .filter((i) =>
+        searchId === ""
+          ? i
+          : i.reason
+              .toLocaleLowerCase()
+              .trim()
+              .includes(searchId.toLocaleLowerCase().trim())
+      )
+      .sort((a, b) => (b.firstname > a.firstname ? 1 : -1))
+      .map(
+        (i, index) =>
+          data.filterTickets && (
+            <TicketBox key={i.ticketno} index={index} i={i} />
+          )
+      );
+    return search;
+  };
   const resultOfSearch = () => {
     return (
       searchId.length > 0 &&
@@ -188,9 +222,19 @@ function AdminTicketList() {
           </button>
         </div>
         <div className="adminSearchArea">
-          <div className="sort" onClick={() => setSortButton(!sortButton)}>
+          {/* <div className="sort" onClick={() => setSortButton(!sortButton)}>
             <TbArrowsUpDown />
-          </div>
+          </div> */}
+          <select
+            className="selectBox"
+            value={sortButton}
+            onChange={(e) => setSortButton(e.target.value)}
+          >
+            <option value={"1-9"}>1-9</option>
+            <option value={"9-1"}>9-1</option>
+            <option value={"a-z"}>a-z</option>
+            <option value={"z-a"}>z-a</option>
+          </select>
           <div className="input">
             <input
               type="text"
@@ -205,7 +249,15 @@ function AdminTicketList() {
         </div>
         {resultOfSearch()}
         <div className="adminTicketList">
-          {sortButton ? searchTicketStraight() : searchTicketReverse()}
+          {sortButton === "1-9"
+            ? searchTicketStraight()
+            : sortButton === "9-1"
+            ? searchTicketReverse()
+            : sortButton === "a-z"
+            ? searchTicketNameStraight()
+            : sortButton === "z-a"
+            ? searchTicketNameReverse()
+            : false}
         </div>
       </div>
 

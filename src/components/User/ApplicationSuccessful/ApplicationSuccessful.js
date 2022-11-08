@@ -9,7 +9,7 @@ function Success() {
   const navigate = useNavigate();
   const data = useContext(Context);
   const [loading, setLoading] = useState(true);
-  const [counter, setCounter] = useState(1);
+  const [counter, setCounter] = useState(8);
   useEffect(() => {
     if (!data.successControl) {
       navigate("/error", { replace: true });
@@ -19,7 +19,7 @@ function Success() {
 
   useEffect(() => {
     if (counter === 0) {
-      setCounter(10);
+      setCounter(8);
       navigate("../", { replace: true });
     }
   }, [counter]);

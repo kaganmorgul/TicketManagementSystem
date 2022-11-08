@@ -81,11 +81,15 @@
       }
     }
     .adminSearchArea {
+      height: 40px;
       @media screen and (max-width: 500px) {
         margin-top: 1rem;
       }
       @include flexr;
-      .sort {
+      .selectBox {
+        height: 100%;
+        width: 60px;
+        text-align: center;
         margin-right: 3rem;
       }
       .input {

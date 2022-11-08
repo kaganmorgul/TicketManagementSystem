@@ -30,7 +30,7 @@ function CreateApplication() {
     isValid,
   } = useFormik({
     initialValues: {
-      firstName: "Kağan",
+      firstName: "",
       lastName: "Morgül",
       id: 24567893421,
       age: 43,
